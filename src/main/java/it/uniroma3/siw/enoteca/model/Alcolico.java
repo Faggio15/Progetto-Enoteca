@@ -14,8 +14,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class Alcolico {
 
-	
-	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
@@ -26,11 +24,19 @@ public class Alcolico {
 	@Column (nullable=false)
 	private Integer tassoAlcolico;
 	
+	@Column (nullable=false)
+	private Long quantitaPresenti;
+	
+	@Column(nullable=false)
+	private Long formato;
+	
+	//da discutere se è necessario
 	private String luogoDiProduzione;
 	
-	private Long annata;
+	@Column (length=2000)
+	private String descrizione;
 	
-	private Long quantitaPresenti;
+	private Long annata;
 	
 	@ManyToOne
 	private Tipologia tipologia;

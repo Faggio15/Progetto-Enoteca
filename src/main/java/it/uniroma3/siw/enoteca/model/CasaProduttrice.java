@@ -26,10 +26,15 @@ public class CasaProduttrice {
 	
 	@Column (nullable=false)
 	private String nome;
-
+	
+	//si parla di sede principale
+	@Column (nullable=false)
 	private String sede;
 	
+	@Column (nullable=false)
 	private Long dataFondazione;
+	
+	private String fondatore;
 	
 	@OneToMany(mappedBy="casaProduttrice")
 	List<Alcolico> alcoliciProdotti;
