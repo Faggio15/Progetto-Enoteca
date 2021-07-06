@@ -1,0 +1,110 @@
+body{ 
+   Font-family: Rockwell;
+   background-image: url("vinoSfondo.jpg");
+   Background-size: cover;
+   background-repeat: no-repeat;
+   Background-color:black;
+   Overflow:hidden;;
+}
+
+/*HEADER e NAVBAR*/
+Header{
+  Position: fixed;
+  Left:0px;
+  Top:0px;
+  Height:200px;
+}
+
+#logo{
+  Position: fixed;
+  Left:20%;
+  Top:50px;
+  Height:70px;
+}
+
+#enoteca{
+  Position: fixed;
+  Left:26%;
+  Top:52px;
+  Font-size:20px;
+  Color:white;
+}
+
+#navbar{
+  Height:40px;
+  Background:none;
+
+  Position: fixed;
+  Left:32%;
+  Top:50px;
+
+  Border-top:4mm ridge white;
+  Border-bottom:4mm ridge white;
+}
+
+#navbar ul {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#navbar li {
+  float: left;
+}
+
+#navbar li a {  
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#navbar li a:hover {
+  color: red;
+}
+
+/* SECTION PRINCIPALE*/
+#principale{
+   Margin-top: 200px;
+   Margin-left:20px;
+   Margin-right:20px;
+   Margin-bottom:60px;
+   Height:600px;
+   Border:2px solid white;
+   Overflow: scroll;
+}
+
+/*SECTION INTERNE*/
+#titoloPagina{
+    Color:white;
+    Text-align: center;
+    Background-color:  rgb(0, 0, 0, 0.6);
+    Margin-left: 20%;
+    Margin-right: 20%;
+    Padding: 2px;
+}
+
+#dati{
+    Text-align: center;
+    Background-color:  rgb(0, 0, 0, 0.6);
+    Min-height:400px;
+    Margin-top: 20px;
+    Margin-left: 10%;
+    Margin-right: 10%;
+    Margin-bottom: 20px;
+    Padding: 2px;
+}
+
+/*FOOTER*/
+footer{
+   Height:30px;
+   Width:100%;
+   Background-color:white;
+   Position:fixed;
+   Bottom:0px;
+   Left:0px;
+   Text-align:center;
+   Padding-top:20px;
+}
