@@ -9,28 +9,31 @@
 <body>
 
     <header th:fragment="header">
-    <img id="logo" src="logoEnoteca.png">
+    <a th:href="@{/home}">
+    <img id="logo" src="/images/logoEnoteca.png">
+    </a>
     <div id="enoteca">Enoteca<br>Roma<br>Tre</div>
     <nav id="navbar">
       <ul>
         <li><a th:href="@{/home}">Home</a></li>
-        <li><a th:href="@{/opere}" th:text=#{nav.opere}>Opere</a></li>
-        <li><a th:href="@{/artisti}" th:text="#{nav.art}">Artisti</a></li>
-        <li><a th:href="@{/collezioni}" th:text="#{nav.coll}">Collezioni</a></li>
-        <li><a th:href="@{/info}" th:text="#{nav.info}">Informazioni</a></li>
+        <li><a th:href="@{/alcolici}">Alcolici</a></li>
+        <li><a th:href="@{/caseProduttrici}">Case produttrici</a></li>
+        <li><a th:href="@{/nazioni}">Nazioni</a></li>
       </ul>
     </nav>
     </header>
     
-    <section id="principale">
+    <section id="esterna">
+     <section id="principale">
     
-      <section id="titoloPagina">
+       <section id="titoloPagina">
          <h2>Titolo Pagina</h2>
-      </section>
+       </section>
       
-      <section id="dati">
-      </section>
+       <section id="dati">
+       </section>
       
+     </section>
     </section>
     
 <footer th:fragment="footer"> Copyright &copy; | 2021 Enoteca Roma Tre | Alessandro Cancelli - Francesco Faggiano </footer>

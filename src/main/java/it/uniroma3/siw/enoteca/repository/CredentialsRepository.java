@@ -1,0 +1,13 @@
+package it.uniroma3.siw.enoteca.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+
+import it.uniroma3.siw.enoteca.model.Credentials;
+
+public interface CredentialsRepository extends CrudRepository<Credentials, Long> {
+	
+	public Optional<Credentials> findByUsername(String username);
+
+}

@@ -25,8 +25,10 @@ public class MainController {
 	@RequestMapping(value = {"/", "home"}, method = RequestMethod.GET)
 	public String home(Model model) {
 	     List<Alcolico> alcolici = this.alcolicoService.tutti();
+	     if(alcolici.size()>=3) {
 	     Collections.shuffle(alcolici);
 	     model.addAttribute("alcolici", alcolici.subList(0, 3));
+	     }
 		 return "home";
 	}
 
