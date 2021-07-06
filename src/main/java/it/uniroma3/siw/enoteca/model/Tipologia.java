@@ -2,6 +2,7 @@ package it.uniroma3.siw.enoteca.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,12 @@ public class Tipologia {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
 	
+	
+	//necessario per l'aggiunta dell'alcolico
+	@Column(nullable=false)
+	private String nome;
+	
+	@Column(length=2000)
 	private String descrizione;
 	
 	@OneToMany(mappedBy="tipologia")
