@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles(title)">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<link th:href="@{/css/base.css}" rel="stylesheet">
+	<title th:text="${title}"></title>
+</head>
+<body>
+
+    <header th:fragment="header">
+    <img id="logo" src="logoEnoteca.png">
+    <div id="enoteca">Enoteca<br>Roma<br>Tre</div>
+    <nav id="navbar">
+      <ul>
+        <li><a th:href="@{/home}">Home</a></li>
+        <li><a th:href="@{/opere}" th:text=#{nav.opere}>Opere</a></li>
+        <li><a th:href="@{/artisti}" th:text="#{nav.art}">Artisti</a></li>
+        <li><a th:href="@{/collezioni}" th:text="#{nav.coll}">Collezioni</a></li>
+        <li><a th:href="@{/info}" th:text="#{nav.info}">Informazioni</a></li>
+      </ul>
+    </nav>
+    </header>
+    
+    <section id="principale">
+    
+      <section id="titoloPagina">
+         <h2>Titolo Pagina</h2>
+      </section>
+      
+      <section id="dati">
+      </section>
+      
+    </section>
+    
+<footer th:fragment="footer"> Copyright &copy; | 2021 Enoteca Roma Tre | Alessandro Cancelli - Francesco Faggiano </footer>
+
+</body>
+</html>
