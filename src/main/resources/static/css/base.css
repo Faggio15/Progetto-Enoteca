@@ -1,31 +1,27 @@
 body{ 
    Font-family: Rockwell;
-   background-image: url("vinoSfondo.jpg");
+   background-image: url("/images/vinoSfondo.jpg");
    Background-size: cover;
    background-repeat: no-repeat;
    Background-color:black;
-   Overflow:hidden;;
 }
 
 /*HEADER e NAVBAR*/
 Header{
-  Position: fixed;
-  Left:0px;
-  Top:0px;
-  Height:200px;
+  margin-top:50px;
+  margin-left:25%;
+  margin-right:auto;
+  width:50%;
+  Top:40px;
+  display: flex;
+  justify-content: space-between;
 }
 
 #logo{
-  Position: fixed;
-  Left:20%;
-  Top:50px;
   Height:70px;
 }
 
 #enoteca{
-  Position: fixed;
-  Left:26%;
-  Top:52px;
   Font-size:20px;
   Color:white;
 }
@@ -33,23 +29,22 @@ Header{
 #navbar{
   Height:40px;
   Background:none;
-
-  Position: fixed;
-  Left:32%;
-  Top:50px;
-
-  Border-top:4mm ridge white;
-  Border-bottom:4mm ridge white;
+  margin-top:7px;
+  Border-top:2mm ridge white;
+  Border-bottom:2mm ridge white;
+  font-size:18px;
 }
 
 #navbar ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #navbar li {
-  float: left;
+
 }
 
 #navbar li a {  
@@ -62,16 +57,16 @@ Header{
 }
 
 #navbar li a:hover {
-  color: red;
+  color: rgb(122, 49, 68);
 }
 
 /* SECTION PRINCIPALE*/
 #principale{
-   Margin-top: 200px;
+   Margin-top: 70px;
    Margin-left:20px;
    Margin-right:20px;
    Margin-bottom:60px;
-   Height:600px;
+   height:570px;
    Border:2px solid white;
    Overflow: scroll;
 }
@@ -107,4 +102,8 @@ footer{
    Left:0px;
    Text-align:center;
    Padding-top:20px;
+}
+
+#ei{
+height:2000px;
 }
