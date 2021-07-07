@@ -6,9 +6,32 @@ body{
    Background-color:black;
 }
 
+/*LOGIN NAVBAR*/
+#loginNav{
+  margin-top:10px;
+  margin-right:10px;
+}
+
+#loginNav ul{
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+#loginNav ul li a{
+    margin-right: 20px;
+    text-decoration: none;
+    color:white;
+    border-bottom: 2px solid white;
+}
+
+#loginNav ul li a:hover{
+    color: rgb(122, 49, 68);
+}
+
 /*HEADER e NAVBAR*/
 Header{
-  margin-top:50px;
+  margin-top:20px;
   margin-left:25%;
   margin-right:auto;
   width:50%;
@@ -43,10 +66,6 @@ Header{
   flex-wrap: wrap;
 }
 
-#navbar li {
-
-}
-
 #navbar li a {  
   display: block;
   color: white;
@@ -62,7 +81,7 @@ Header{
 
 /* SECTION PRINCIPALE*/
 #principale{
-   Margin-top: 70px;
+   Margin-top: 40px;
    Margin-left:20px;
    Margin-right:20px;
    Margin-bottom:60px;
@@ -84,6 +103,7 @@ Header{
 #dati{
     Text-align: center;
     Background-color:  rgb(0, 0, 0, 0.6);
+    color:white;
     Min-height:400px;
     Margin-top: 20px;
     Margin-left: 10%;
@@ -104,6 +124,25 @@ footer{
    Padding-top:20px;
 }
 
-#ei{
-height:2000px;
+/*PAGINA HOME*/
+#homeAlcolici{
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  height:auto;
+  padding:20px;
+  Margin-top:10px;
+  margin-bottom:25px;
+  flex-wrap: wrap;
+}
+
+.immagini{
+    width: 380px;
+    height: 380px;
+    margin-bottom:20px;
+}
+div img{
+	margin-bottom:20px;
+	width: 100%;
+	height: 100%;
 }

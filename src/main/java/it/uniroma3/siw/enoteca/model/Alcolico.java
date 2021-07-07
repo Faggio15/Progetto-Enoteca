@@ -42,6 +42,9 @@ public class Alcolico {
 	
 	private Long annata;
 	
+	@Column(nullable = true, length = 64)
+	private String photos;
+	
 	
 	
 	@ManyToOne

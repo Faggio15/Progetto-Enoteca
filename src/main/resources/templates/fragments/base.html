@@ -4,9 +4,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
 	<link th:href="@{/css/base.css}" rel="stylesheet">
+	<link th:href="@{/css/login.css}" rel="stylesheet">
 	<title th:text="${title}"></title>
 </head>
 <body>
+    <nav th:fragment="loginNav" id="loginNav">
+    <ul>
+        <li><a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
+        <li><a sec:authorize="isAnonymous()" th:href="@{/register}">Registrati</a></li>
+        <li><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/default}">Area Riservata</a></li>
+        <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
+    </ul>
+    </nav>
 
     <header th:fragment="header">
     <a th:href="@{/home}">
