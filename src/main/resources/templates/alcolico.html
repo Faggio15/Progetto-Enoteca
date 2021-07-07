@@ -4,9 +4,9 @@
 <head
 	th:replace="fragments/base.html :: headerfiles(title='ER3 | Alcolico')"></head>
 <body>
-	<nav th:replace="fragments/base.html :: navbar"></nav>
-
+	<nav th:replace="fragments/base.html :: loginNav"></nav>
 	<header th:replace="fragments/base.html :: header"></header>
+	
 	<section id="principale">
 		<section id="titoloPagina">
 			<h2 th:text="${alcolico.nome}">Nome</h2>
@@ -23,19 +23,19 @@
 			<h5>Gradazione:</h5>
 			<div th:text="${alcolico.tassoAlcolico}">Tasso Alcolico</div>
 			<h5>Quantita':</h5>
-			<div th:text="${alcolico.quantita}">Quantita</div>
+			<div th:text="${alcolico.quantitaPresenti}">Quantita</div>
 			<h5>Formato:</h5>
 			<div th:text="${alcolico.formato}">Formato</div>
 			<h5>Annata:</h5>
-			<div th:text="${alcolico.annaata}">Annata</div>
+			<div th:text="${alcolico.annata}">Annata</div>
 			<h5>Tipologia:</h5>
 			<a th:href="@{'/tipologia' + '/' + ${tipologia.id}}">
-					<div th:text="${tipologia.nome}">Nome</div>
-				</a>
+				<div th:text="${tipologia.nome}">Nome</div>
+			</a>
 			<h5>Casa Produttrice:</h5>
 			<a th:href="@{'/casaProduttrice' + '/' + ${casaProduttrice.id}}">
-					<div th:text="${casaProduttrice.nome}">Nome</div>
-				</a>
+				<div th:text="${casaProduttrice.nome}">Nome</div>
+			</a>
 			<h5>Prezzo:</h5>
 			<div th:text="${alcolico.prezzo}">Prezzo</div>
 		</section>
