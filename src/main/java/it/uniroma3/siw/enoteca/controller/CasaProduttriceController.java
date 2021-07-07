@@ -54,7 +54,7 @@ public class CasaProduttriceController {
     	return "casaProduttrice.html"; 
     }
     
-    @RequestMapping(value = "/CaseProduttrici", method = RequestMethod.GET)
+    @RequestMapping(value = "/caseProduttrici", method = RequestMethod.GET)
     public String getCaseProduttrici(Model model) {
     		model.addAttribute("caseProduttrici", this.casaProduttriceService.tutti());
     		return "caseProduttrici.html";

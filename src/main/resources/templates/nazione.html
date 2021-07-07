@@ -4,12 +4,13 @@
 	th:replace="fragments/base.html :: headerfiles(title='ER3 | Tipologie')"></head>
 
 <body>
+	<nav th:replace="fragments/base.html :: loginNav"></nav>
 	<header th:replace="fragments/base.html :: header"></header>
+	
 	<section id="principale">
 		<section id="titoloPagina">
 			<h2>
-				Le case produttrici in
-				<h2 th:text="${nazione.nome}">Nazione</h2>
+				Le case produttrici
 			</h2>
 		</section>
 		<section id="dati">

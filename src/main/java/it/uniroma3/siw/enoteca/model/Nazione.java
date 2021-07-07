@@ -2,6 +2,7 @@ package it.uniroma3.siw.enoteca.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Nazione {
 	@Column(nullable = true, length = 64)
 	private String photos;
 	
-	@OneToMany(mappedBy="nazione")
+	@OneToMany(mappedBy="nazione", cascade=CascadeType.ALL)
 	List<CasaProduttrice> caseProduttrici;
 	
 	public Nazione() {
