@@ -13,7 +13,7 @@
 			</h2>
 		</section>
 		<section id="dati">
-			<div id="multiple" th:each="casaProduttrice : ${caseProduttrici}">
+			<div th:each="casaProduttrice : ${caseProduttrici}">
 				<a th:href="@{'/casaProduttrice' + '/' + ${casaProduttrice.id}}">
 					<div th:text="${casaProduttrice.nome}">Nome</div>
 				</a>
