@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title='ER3 | Login')"></head>
+  <body>
+			<div>
+			<form th:action="@{/login}" method="POST" id="loginForm">
+			    <div>
+				<h1>Login</h1>
+			    </div>
+				<div>
+					<div>
+						<h2>Username:</h2>
+						<span><input name="username" type="text" required /></span>
+					</div>		
+					<div>
+						<h2>Password:</h2>
+						<span><input name="password" type="password" required /></span>
+					</div>
+					<div>
+						<span><button type="submit">Login</button></span>
+					</div>
+					
+				</div>
+			</form>
+			</div>
+  </body>
+
+</html>

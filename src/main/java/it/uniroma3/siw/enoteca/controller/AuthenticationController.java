@@ -32,7 +32,7 @@ public class AuthenticationController {
 	public String showRegisterForm (Model model) {
 		model.addAttribute("user", new User());
 		model.addAttribute("credentials", new Credentials());
-		return "registerUser.html";
+		return "registerForm";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET) 

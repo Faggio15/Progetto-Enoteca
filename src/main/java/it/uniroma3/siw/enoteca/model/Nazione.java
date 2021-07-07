@@ -26,6 +26,9 @@ public class Nazione {
 	@Column(nullable=false)
 	private String nome;
 	
+	@Column(nullable = true, length = 64)
+	private String photos;
+	
 	@OneToMany(mappedBy="nazione")
 	List<CasaProduttrice> caseProduttrici;
 	

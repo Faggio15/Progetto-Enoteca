@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head th:replace="fragments/base.html :: headerfiles(title='ER3 | Homepage')"></head>
+  <head th:replace="fragments/base.html :: headerfiles(title='ER3 | Area riservata')"></head>
 
   <body>
     <nav th:replace="fragments/base.html :: loginNav"></nav>
@@ -13,10 +13,8 @@
        </section>
       
        <section id="dati">
-          <div id="homeAlcolici">
-            <div th:each="opera : ${opere}" class="immagini">
-              <img th:src="@{'/images' + '/' + ${opera.titolo} + '.jpg'}">
-         	</div>          
+          <div>
+          <h2>QUI ANDRA' LA LISTA DI OPERAZIONI DELL' ADMIN</h2>
           </div>
        </section>
      
