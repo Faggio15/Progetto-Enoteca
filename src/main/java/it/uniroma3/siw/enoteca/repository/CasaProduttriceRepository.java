@@ -11,5 +11,7 @@ import it.uniroma3.siw.enoteca.model.CasaProduttrice;
 public interface CasaProduttriceRepository extends CrudRepository<CasaProduttrice, Long> {
 
 	public List<CasaProduttrice> findByNome(String nome);
+	
+	public List<CasaProduttrice> findByNazione(Long id);
 
 }

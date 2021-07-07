@@ -1,0 +1,45 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='ER3 | Alcolico')"></head>
+<body>
+	<nav th:replace="fragments/base.html :: navbar"></nav>
+
+	<header th:replace="fragments/base.html :: header"></header>
+	<section id="principale">
+		<section id="titoloPagina">
+			<h2 th:text="${alcolico.nome}">Nome</h2>
+		</section>
+		<div id="flex-container">
+			<img class="foto"
+				th:src="@{'/images' + '/' + ${alcolico.nome} + '.jpg'}">
+			<div class="col">
+				<h5>DESCRIZIONE:</h5>
+				<p id="paragrafo" th:text="${alcolico.descrizione}">Descrizione</p>
+			</div>
+		</div>
+		<section id="dati">
+			<h5>Gradazione:</h5>
+			<div th:text="${alcolico.tassoAlcolico}">Tasso Alcolico</div>
+			<h5>Quantita':</h5>
+			<div th:text="${alcolico.quantita}">Quantita</div>
+			<h5>Formato:</h5>
+			<div th:text="${alcolico.formato}">Formato</div>
+			<h5>Annata:</h5>
+			<div th:text="${alcolico.annaata}">Annata</div>
+			<h5>Tipologia:</h5>
+			<a th:href="@{'/tipologia' + '/' + ${tipologia.id}}">
+					<div th:text="${tipologia.nome}">Nome</div>
+				</a>
+			<h5>Casa Produttrice:</h5>
+			<a th:href="@{'/casaProduttrice' + '/' + ${casaProduttrice.id}}">
+					<div th:text="${casaProduttrice.nome}">Nome</div>
+				</a>
+			<h5>Prezzo:</h5>
+			<div th:text="${alcolico.prezzo}">Prezzo</div>
+		</section>
+	</section>
+	<footer th:replace="fragments/base.html :: footer"></footer>
+</body>
+</html>
