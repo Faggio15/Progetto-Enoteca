@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='ER3 | Tipologie')"></head>
+
+<body>
+	<header th:replace="fragments/base.html :: header"></header>
+	<section id="principale">
+		<section id="titoloPagina">
+			<h2 th:text="${tipologia.nome}">Nome</h2>
+		</section>
+		<section id="dati">
+		<div class="col">
+				<h5>DESCRIZIONE:</h5>
+				<p id="paragrafo" th:text="${tipologia.descrizione}">Descrizione</p>
+			</div>
+			<div class="objLista" th:each="alcolico : ${alcolici}">
+			     <a th:href="@{'/alcolico' + '/' + ${alcolico.id}}">
+			        <img class="foto" th:src="@{'/images' + '/' + ${alcolico.nome} + '.jpg'}">
+			     </a>
+			     <section class="infoObj">
+			     <div th:text="${alcolico.nome}">Nome</div>
+			     </section>
+            </div>
+		</section>
+	</section>
+	<footer th:replace="fragments/base.html :: footer"></footer>
+</body>
+</html>

@@ -49,6 +49,11 @@ public class CasaProduttriceService {
 		else 
 			return false;
 	}
+	
+	@Transactional
+	public List<CasaProduttrice> trovaPerNazione(Long id){
+		return casaProduttriceRepository.findByNazione(id);
+	}
 
 	@Transactional
 	public void deleteCasaProduttriceById(Long id) {

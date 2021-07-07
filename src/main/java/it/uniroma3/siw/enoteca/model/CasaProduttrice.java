@@ -2,6 +2,7 @@ package it.uniroma3.siw.enoteca.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +28,9 @@ public class CasaProduttrice {
 	@Column (nullable=false)
 	private String nome;
 
+	@Column (length=2000)
+	private String descrizione;
+	
 	@Column(nullable=false)
 	private String sede;
 	
@@ -35,7 +39,7 @@ public class CasaProduttrice {
 	
 	private String fondatore;
 	
-	@OneToMany(mappedBy="casaProduttrice")
+	@OneToMany(mappedBy="casaProduttrice", cascade=CascadeType.ALL)
 	List<Alcolico> alcoliciProdotti;
 	
 	@ManyToOne

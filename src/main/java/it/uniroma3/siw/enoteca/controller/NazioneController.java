@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.enoteca.controller.validator.NazioneValidator;
 import it.uniroma3.siw.enoteca.model.Nazione;
+import it.uniroma3.siw.enoteca.service.CasaProduttriceService;
 import it.uniroma3.siw.enoteca.service.NazioneService;
 
 @Controller
@@ -20,6 +21,9 @@ public class NazioneController {
 	
 	@Autowired
 	private NazioneService nazioneService;
+	
+	@Autowired
+	private CasaProduttriceService casaProduttriceService;
 	
     @Autowired
     private NazioneValidator nazioneValidator;
@@ -34,13 +38,14 @@ public class NazioneController {
     @RequestMapping(value = "/nazione/{id}", method = RequestMethod.GET)
     public String getNazione(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("nazione", this.nazioneService.nazionePerId(id));
-    	return "nazione.html"; //ancora non esiste
+    	model.addAttribute("caseProduttrici", this.casaProduttriceService.trovaPerNazione(id));
+    	return "nazione.html";
     }
 
     @RequestMapping(value = "/nazioni", method = RequestMethod.GET)
     public String getNazioni(Model model) {
     		model.addAttribute("nazioni", this.nazioneService.tutti());
-    		return "nazioni.html";//ancora non esiste
+    		return "nazioni.html";
     }
     
     @RequestMapping(value = "/Nazione", method = RequestMethod.POST)

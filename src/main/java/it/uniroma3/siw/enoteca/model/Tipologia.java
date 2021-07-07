@@ -2,6 +2,7 @@ package it.uniroma3.siw.enoteca.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Tipologia {
 	@Column(length=2000)
 	private String descrizione;
 	
-	@OneToMany(mappedBy="tipologia")
+	@OneToMany(mappedBy="tipologia", cascade=CascadeType.ALL)
 	List<Alcolico> alcolici;
 	
 	public Tipologia() {

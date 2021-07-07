@@ -43,7 +43,7 @@ public class TipologiaController {
     @RequestMapping(value = "/tipologie", method = RequestMethod.GET)
     public String getTipologie(Model model) {
     		model.addAttribute("tipologie", this.tipologiaService.tutti());
-    		return "tipologie.html";//ancora non esiste
+    		return "tipologie.html";
     }
     
     @RequestMapping(value = "/admin/tipologia", method = RequestMethod.POST)
