@@ -24,7 +24,7 @@ public class Alcolico {
 	private String nome;
 	
 	@Column (nullable=false)
-	private Float tassoAlcolico;
+	private Float gradoAlcolico;
 	
 	@Column (nullable=false)
 	private Long quantitaPresenti;

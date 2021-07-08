@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title='ER3 | Aggiungi una Nazione')"></head>
+
+  <body>
+    <nav th:replace="fragments/base.html :: loginNav"></nav>
+    <header th:replace="fragments/base.html :: header"></header>
+     
+     <section id="principale">
+      
+       <section id="dati">
+       
+	<form th:action="@{/admin/nazione}" method="POST" id="loginForm" th:object="${nazione}">
+	  	
+	  	<div>
+		   <h1>Inserisci una nazione</h1>
+		</div>
+		
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		
+		<div>
+			<div>
+				<h2>Nome:</h2>
+				<span><input type="text" th:field="*{nome}" /></span>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+			</div>		
+			<div>
+			FOTO DA METTEREEEEEE
+			</div>
+			<div>
+			   <button type="submit">Invio</button>
+			</div>
+		</div>
+		
+		
+       </section>
+     
+     </section>
+	</form>

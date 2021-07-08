@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head th:replace="fragments/base.html :: headerfiles(title='ER3 | Registrazione')"></head>
   <body>
-    <div>
 	<form th:action="@{/register}" method="POST" id="loginForm">
 	  	<div>
 		   <h1>Registrati</h1>
@@ -37,11 +36,10 @@
                 th:errors="${user.cognome}" th:style="'color:red'"></span>
          </div>
          <div>
-            <span><button type="submit">Registra</button></span>
+           <button type="submit" id="login">Registra</button> 
          </div>
        </div>
 	</form>
-	</div>
   </body>
 
 </html>

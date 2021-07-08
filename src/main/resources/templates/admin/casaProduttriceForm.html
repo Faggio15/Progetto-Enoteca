@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/base.html :: headerfiles(title='ER3 | Aggiungi una Casa Produttrice')"></head>
+
+  <body>
+    <nav th:replace="fragments/base.html :: loginNav"></nav>
+    <header th:replace="fragments/base.html :: header"></header>
+     
+     <section id="principale">
+      
+       <section id="dati">
+       
+	<form th:action="@{/admin/casaProduttrice}" method="POST" id="loginForm" th:object="${casaProduttrice}">
+	  	
+	  	<div>
+		   <h1>Inserisci una casa produttrice</h1>
+		</div>
+		
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		
+		<div>
+			<div>
+				<h2>Nome:</h2>
+				<span><input type="text" th:field="*{nome}" /></span>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+			</div>		
+			<div>
+				<h2>Sede:</h2>
+				<span><input type="text" th:field="*{sede}" /></span>
+				<span th:if="${#fields.hasErrors('sede')}" th:errors="*{sede}"></span>
+			</div>
+			<div>
+				<h2>Data di fondazione:</h2>
+				<span><input type="date" th:value="*{dataFondazione}" th:field="*{dataFondazione}" /></span>
+				<span th:if="${#fields.hasErrors('dataFondazione')}" th:errors="*{dataFondazione}"></span>
+			</div>
+			<div>
+				<h2>Fondatore:</h2>
+				<span><input type="text" th:field="*{fondatore}" /></span>
+				<span th:if="${#fields.hasErrors('fondatore')}" th:errors="*{fondatore}"></span>
+			</div>
+
+			 <div id="tendina" align="center">
+			   <h2>Nazione:</h2>
+               <select name="n">
+                 <option th:each="nazione : ${nazioni}" th:value="${nazione.nome}" th:text="${nazione.nome}">Nazione</option>
+               </select>
+              </div>
+              
+			<div>
+			   <button type="submit">Invio</button>
+			</div>
+		</div>
+		
+		
+       </section>
+     
+     </section>
+	</form>

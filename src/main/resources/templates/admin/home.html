@@ -8,14 +8,46 @@
      
      <section id="principale">
     
-       <section id="titoloPagina" >
+       <section id="titoloPagina">
          <h2>ENOTECA ROMA TRE</h2>
        </section>
       
        <section id="dati">
-          <div>
-          <h2>QUI ANDRA' LA LISTA DI OPERAZIONI DELL' ADMIN</h2>
-          </div>
+    <div class="flex-container" id="containerPrincipale">
+     
+      <div class="flex-container" id="containerUno">
+		<div>
+			<a th:href="@{/admin/addAlcolico}">Aggiungi Alcolico</a>
+   		</div>
+		<div>
+			<a th:href="@{/admin/addTipologia}">Aggiungi Tipologia</a>
+   		</div>
+   		<div>
+			<a th:href="@{/admin/addCasaProduttrice}">Aggiungi Casa Produttrice</a>
+   		</div>
+   		<div>
+			<a th:href="@{/admin/addNazione}">Aggiungi Nazione</a>
+   		</div>
+      </div>
+      
+      <div class="flex-container" id="containerDue">
+		<div>
+			<a th:href="@{/admin/deleteAlcolici}">Elimina Alcolico</a>
+   		</div>
+		<div>
+			<a th:href="@{/admin/deleteTipologia}">Elimina Tipologia</a>
+   		</div>
+   		<div>
+			<a th:href="@{/admin/deleteCaseProduttrici}">Elimina CasaProduttrice</button></a>
+   		</div>
+   		<div>
+			<a th:href="@{/admin/deleteNazioni}">Elimina Nazione</a>
+   		</div>  		  		   		
+     </div>
+     
+     </div>
+    <div><a th:href="@{/logout}"><button id="logout">Logout</button></a></div>
+
        </section>
      
      </section>

@@ -15,8 +15,8 @@
    margin-right:auto;
    width:400px;
    min-height:400px;
-   margin-top:140px;
-   margin-bottom:auto;
+   margin-top:50px;
+   margin-bottom:60px;
    background-color:  rgb(0, 0, 0, 0.6);
    
    /*Per gestire le ombre. STANDARD:da sinistra a destra CON IL MENO: da destra a sinistra*/
@@ -43,7 +43,6 @@
 #loginForm button{
   text-align:center;
   padding:8px 50px;
-  margin-left:33%;
   margin-top:30px;
   margin-bottom:30px;
   border:2px solid white;
@@ -56,4 +55,17 @@
 #loginForm button:hover{
 	background-color:white;
 	color: black
+}
+
+#login{
+	margin-left: 130px;
+}
+
+
+textarea{
+	resize: vertical;
+}
+
+#tendina{
+    margin-top:40px;
 }

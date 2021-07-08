@@ -1,7 +1,5 @@
 package it.uniroma3.siw.enoteca.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,33 +23,33 @@ public class NazioneController {
     private NazioneValidator nazioneValidator;
     
 
-    @RequestMapping(value="/addNazione", method = RequestMethod.GET)
+    @RequestMapping(value="/admin/addNazione", method = RequestMethod.GET)
     public String addNazione(Model model) {
     	model.addAttribute("nazione", new Nazione());
-        return "nazioneForm.html"; //ancora non esiste
+        return "admin/nazioneForm.html";
     }
 
     @RequestMapping(value = "/nazione/{id}", method = RequestMethod.GET)
     public String getNazione(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("nazione", this.nazioneService.nazionePerId(id));
-    	return "nazione.html"; //ancora non esiste
+    	return "nazione.html";
     }
 
     @RequestMapping(value = "/nazioni", method = RequestMethod.GET)
     public String getNazioni(Model model) {
     		model.addAttribute("nazioni", this.nazioneService.tutti());
-    		return "nazioni.html";//ancora non esiste
+    		return "nazioni.html";
     }
     
-    @RequestMapping(value = "/Nazione", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/nazione", method = RequestMethod.POST)
     public String newNazione(@ModelAttribute("nazione") Nazione nazione, 
     									Model model, BindingResult bindingResult) {
     	this.nazioneValidator.validate(nazione, bindingResult);
         if (!bindingResult.hasErrors()) {
         	this.nazioneService.inserisci(nazione);
             model.addAttribute("nazioni", this.nazioneService.tutti());
-            return "nazioni.html";//ancora non esiste
+            return "nazioni.html";
         }
-        return "nazioneForm.html";//ancora non esiste
+        return "admin/nazioneForm.html";
     }
 }
