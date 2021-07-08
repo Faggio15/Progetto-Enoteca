@@ -12,9 +12,9 @@
 			<h2>Tutte le case produttrici presenti nell'Enoteca</h2>
 		</section>
 		<section id="dati">
-			<div th:each="casaProduttrice : ${caseProduttrici}">
+			<div id="lista" th:each="casaProduttrice : ${caseProduttrici}">
 				<a th:href="@{'/casaProduttrice' + '/' + ${casaProduttrice.id}}">
-					<div th:text="${casaProduttrice.nome}">Nome</div>
+					<div id="elem" th:text="${casaProduttrice.nome}">Nome</div>
 				</a>
 			</div>
 		</section>
