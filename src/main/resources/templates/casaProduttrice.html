@@ -12,21 +12,29 @@
 			<h2 th:text="${casaProduttrice.nome}">Nome</h2>
 		</section>
 		<section id="dati">
-			<h5>Sede:</h5>
-			<div th:text="${casaProduttrice.sede}">Sede</div>
-			<h5>Data Fondazione:</h5>
-			<div th:text="${casaProduttrice.dataFondazione}">Data
-				Fondazione</div>
-			<h5>Fondatore:</h5>
-			<div th:text="${casaProduttrice.fondatore}">Fondatore</div>
-			<h5>Nazione:</h5>
-			<a th:href="@{'nazione' + '/' + ${nazione.id}}">
-				<div th:text="${nazione.nome}">Nazione</div>
-			</a>
-			<div class="col">
-				<h5>DESCRIZIONE:</h5>
-				<p id="paragrafo" th:text="${casaProduttrice.descrizione}">Descrizione</p>
+			<div id="flex-container">
+			<div class="info-dati">
+				<h5>Sede:</h5>
+				<div th:text="${casaProduttrice.sede}">Sede</div>
+				<h5>Data Fondazione:</h5>
+				<div th:text="${casaProduttrice.dataFondazione}">Data
+					Fondazione</div>
+				<h5>Fondatore:</h5>
+				<div th:text="${casaProduttrice.fondatore}">Fondatore</div>
+				<h5>Nazione:</h5>
+				<a th:href="@{'nazione' + '/' + ${nazione.id}}">
+					<div th:text="${nazione.nome}">Nazione</div>
+				</a>
+				</div>
+				<div class="col">
+					<h5>DESCRIZIONE:</h5>
+					<p id="paragrafo" th:text="${casaProduttrice.descrizione}">Descrizione</p>
+				</div>
 			</div>
+			
+			
+			
+			
 			<div class="objLista" th:each="alcolico : ${alcolici}">
 				<a th:href="@{'/alcolico' + '/' + ${alcolico.id}}"> <img
 					class="foto"
@@ -37,7 +45,6 @@
 				</section>
 			</div>
 		</section>
-
 	</section>
 	<footer th:replace="fragments/base.html :: footer"></footer>
 </body>

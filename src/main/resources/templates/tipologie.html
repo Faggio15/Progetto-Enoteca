@@ -12,9 +12,9 @@
 			<h2>Tipologie presenti nell'Enoteca</h2>
 		</section>
 		<section id="dati">
-			<div th:each="tipologia : ${tipologie}">
+			<div id="lista" th:each="tipologia : ${tipologie}">
 				<a th:href="@{'/tipologia' + '/' + ${tipologia.id}}">
-					<div th:text="${tipologia.nome}">Nome</div>
+					<div id="elem" th:text="${tipologia.nome}">Nome</div>
 				</a>
 			</div>
 		</section>
