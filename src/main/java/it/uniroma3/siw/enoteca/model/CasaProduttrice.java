@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -45,6 +46,9 @@ public class CasaProduttrice {
 	
 	private String fondatore;
 	
+	@Column(nullable = true, length = 64)
+	private String photos;
+	
 	@OneToMany(mappedBy="casaProduttrice", cascade=CascadeType.ALL)
 	List<Alcolico> alcoliciProdotti;
 	
@@ -54,4 +58,11 @@ public class CasaProduttrice {
 	public CasaProduttrice() {
 		
 	}
+	
+	   @Transient
+	    public String getPhotosImagePath() {
+	        if (photos == null || id == null) return null;
+	         
+	        return "/img/caseProduttrici/" + id + "/" + photos;
+	    }
 }

@@ -1,22 +1,26 @@
 package it.uniroma3.siw.enoteca.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.enoteca.controller.validator.AlcolicoValidator;
 import it.uniroma3.siw.enoteca.model.Tipologia;
 import it.uniroma3.siw.enoteca.model.CasaProduttrice;
 import it.uniroma3.siw.enoteca.model.Alcolico;
 import it.uniroma3.siw.enoteca.service.TipologiaService;
+import it.uniroma3.siw.enoteca.util.FileUploadUtil;
 import it.uniroma3.siw.enoteca.service.CasaProduttriceService;
 import it.uniroma3.siw.enoteca.service.AlcolicoService;
 
@@ -63,7 +67,9 @@ public class AlcolicoController {
     
     @RequestMapping(value = "/admin/alcolico", method = RequestMethod.POST)
     public String newAlcolico(@ModelAttribute("alcolico") Alcolico alcolico,   @RequestParam("t") String tipologia,
-    		@RequestParam("cp") String casaProduttrice, Model model, BindingResult bindingResult) {
+    		@RequestParam("cp") String casaProduttrice, @RequestParam("image") MultipartFile multipartFile, Model model, BindingResult bindingResult) throws IOException {
+    	
+        
     	this.alcolicoValidator.validate(alcolico, bindingResult);
         if (!bindingResult.hasErrors()) {
         	casaProduttrice.trim();
@@ -72,9 +78,16 @@ public class AlcolicoController {
         	tipologia.trim(); 
             List<Tipologia> tipol = this.tipologiaService.tipologiaPerNome(tipologia); 
         	alcolico.setTipologia(tipol.get(0));
-        	this.alcolicoService.inserisci(alcolico);
+        	
+        	/*UPLOAD FOTO*/
+        	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            alcolico.setPhotos(fileName);
+            Alcolico savedAlcolico = this.alcolicoService.inserisci(alcolico);
+            String uploadDir = "src/main/resources/static/img/alcolici/" + savedAlcolico.getId();
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            
             model.addAttribute("alcolici", this.alcolicoService.tutti());
-            return "alcolici.html";
+            return "tipologie.html";
         }
         return "admin/alcolicoForm.html";
     }

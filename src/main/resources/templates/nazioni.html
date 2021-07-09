@@ -14,9 +14,9 @@
 		<section id="dati">
 			<div id="lista">
 				<div class="objLista" th:each="nazione : ${nazioni}">
-					<a th:href="@{'/nazione' + '/' + ${nazione.id}}"> <img
-						class="foto"
-						th:src="@{'/images' + '/' + ${nazione.nome} + '.jpg'}">
+					<a th:href="@{'/nazione' + '/' + ${nazione.id}}"> 
+					<img class="foto"
+						 th:src="@{${nazione.photosImagePath}}"/>
 					</a>
 					<section class="infoObj">
 						<div th:text="${nazione.nome}">Nome</div>

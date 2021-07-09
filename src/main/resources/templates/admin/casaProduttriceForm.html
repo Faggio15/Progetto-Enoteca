@@ -10,7 +10,7 @@
       
        <section id="dati">
        
-	<form th:action="@{/admin/casaProduttrice}" method="POST" id="loginForm" th:object="${casaProduttrice}">
+	<form th:action="@{/admin/casaProduttrice}" method="POST" id="loginForm" th:object="${casaProduttrice}" enctype="multipart/form-data">
 	  	
 	  	<div>
 		   <h1>Inserisci una casa produttrice</h1>
@@ -48,6 +48,11 @@
                  <option th:each="nazione : ${nazioni}" th:value="${nazione.nome}" th:text="${nazione.nome}">Nazione</option>
                </select>
               </div>
+              
+            <div>
+			    <h2>Foto:</h2>
+                <span><input type="file" name="image" accept="image/png, image/jpeg, image/jpg" /></span>
+			</div>
               
 			<div>
 			   <button type="submit">Invio</button>

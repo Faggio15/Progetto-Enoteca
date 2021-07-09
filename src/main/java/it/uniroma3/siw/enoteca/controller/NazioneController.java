@@ -1,18 +1,25 @@
 package it.uniroma3.siw.enoteca.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.enoteca.controller.validator.NazioneValidator;
+import it.uniroma3.siw.enoteca.model.Alcolico;
 import it.uniroma3.siw.enoteca.model.Nazione;
 import it.uniroma3.siw.enoteca.service.CasaProduttriceService;
 import it.uniroma3.siw.enoteca.service.NazioneService;
+import it.uniroma3.siw.enoteca.util.FileUploadUtil;
 
 @Controller
 public class NazioneController {
@@ -48,11 +55,17 @@ public class NazioneController {
     }
     
     @RequestMapping(value = "/admin/nazione", method = RequestMethod.POST)
-    public String newNazione(@ModelAttribute("nazione") Nazione nazione, 
-    									Model model, BindingResult bindingResult) {
+    public String newNazione(@ModelAttribute("nazione") Nazione nazione, @RequestParam("image") MultipartFile multipartFile, 
+    									Model model, BindingResult bindingResult) throws IOException {
     	this.nazioneValidator.validate(nazione, bindingResult);
-        if (!bindingResult.hasErrors()) {
-        	this.nazioneService.inserisci(nazione);
+        if (!bindingResult.hasErrors()) {	
+        	/*UPLOAD FOTO*/
+        	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            nazione.setPhotos(fileName);
+            Nazione savedNazione = this.nazioneService.inserisci(nazione);
+            String uploadDir = "src/main/resources/static/img/nazioni/" + savedNazione.getId();
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        	
             model.addAttribute("nazioni", this.nazioneService.tutti());
             return "nazioni.html";
         }
