@@ -1,5 +1,6 @@
 package it.uniroma3.siw.enoteca.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -38,9 +40,12 @@ public class CasaProduttrice {
 	
 	@Column(nullable=false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Long dataFondazione;
+	private LocalDate dataFondazione;
 	
 	private String fondatore;
+	
+	@Column(nullable = true, length = 64)
+	private String photos;
 	
 	@OneToMany(mappedBy="casaProduttrice", cascade=CascadeType.ALL)
 	List<Alcolico> alcoliciProdotti;
@@ -51,4 +56,11 @@ public class CasaProduttrice {
 	public CasaProduttrice() {
 		
 	}
+	
+	   @Transient
+	    public String getPhotosImagePath() {
+	        if (photos == null || id == null) return null;
+	         
+	        return "/img/caseProduttrici/" + id + "/" + photos;
+	    }
 }

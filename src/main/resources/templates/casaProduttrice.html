@@ -13,8 +13,8 @@
 		</section>
 		<div id="flex-container">
 			<section id="dati">
-			<img class="foto"
-				th:src="@{'/images' + '/' + ${casaProduttrice.nome} + '.jpg'}">
+			    <img class="foto"
+				     th:src="@{${casaProduttrice.photosImagePath}}"/>
 				<ul>
 					<li><h4>Sede:</h4> <span th:text="${casaProduttrice.sede}">Sede</span></li>
 					<li><h4>Data Fondazione:</h4> <span
@@ -22,7 +22,7 @@
 					<li><h4>Fondatore:</h4> <span
 						th:text="${casaProduttrice.fondatore}">Fondatore</span></li>
 					<li><h4>Nazione:</h4> <a
-						th:href="@{'nazione' + '/' + ${nazione.id}}"> <span
+						th:href="@{'/nazione' + '/' + ${nazione.id}}"> <span
 							th:text="${nazione.nome}">Nazione</span>
 					</a>
 				</ul>
