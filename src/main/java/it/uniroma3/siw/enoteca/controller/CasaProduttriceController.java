@@ -12,17 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sun.xml.bind.v2.runtime.reflect.Accessor.SetterOnlyReflection;
-
 import it.uniroma3.siw.enoteca.controller.validator.CasaProduttriceValidator;
 import it.uniroma3.siw.enoteca.model.CasaProduttrice;
 import it.uniroma3.siw.enoteca.model.Nazione;
 import it.uniroma3.siw.enoteca.service.CasaProduttriceService;
 import it.uniroma3.siw.enoteca.service.NazioneService;
 import it.uniroma3.siw.enoteca.service.AlcolicoService;
-import net.bytebuddy.asm.Advice.This;
 //vanno aggiunti metodi di: aggiunta/rimozione opere e curatori nella collezione corrente
 //va veriricato il funzionamento di deleteCollezione (specie il path e il return)
+
 @Controller
 public class CasaProduttriceController {
 	

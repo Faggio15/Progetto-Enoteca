@@ -1,7 +1,5 @@
 package it.uniroma3.siw.enoteca.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.enoteca.controller.validator.NazioneValidator;
 import it.uniroma3.siw.enoteca.model.Nazione;
-import it.uniroma3.siw.enoteca.service.CasaProduttriceService;
 import it.uniroma3.siw.enoteca.service.NazioneService;
 
 @Controller
@@ -22,9 +19,6 @@ public class NazioneController {
 	@Autowired
 	private NazioneService nazioneService;
 	
-	@Autowired
-	private CasaProduttriceService casaProduttriceService;
-	
     @Autowired
     private NazioneValidator nazioneValidator;
     
@@ -32,13 +26,13 @@ public class NazioneController {
     @RequestMapping(value="/admin/addNazione", method = RequestMethod.GET)
     public String addNazione(Model model) {
     	model.addAttribute("nazione", new Nazione());
-        return "admin/nazioneForm.html"; //ancora non esiste
+        return "admin/nazioneForm.html";
+
     }
 
     @RequestMapping(value = "/nazione/{id}", method = RequestMethod.GET)
     public String getNazione(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("nazione", this.nazioneService.nazionePerId(id));
-    	model.addAttribute("caseProduttrici", this.casaProduttriceService.trovaPerNazione(id));
     	return "nazione.html";
     }
 
