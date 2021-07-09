@@ -11,33 +11,36 @@
 		<section id="titoloPagina">
 			<h2 th:text="${casaProduttrice.nome}">Nome</h2>
 		</section>
-		<section id="dati">
-			<div id="flex-container">
-			<div class="info-dati">
-				<h5>Sede:</h5>
-				<div th:text="${casaProduttrice.sede}">Sede</div>
-				<h5>Data Fondazione:</h5>
-				<div th:text="${casaProduttrice.dataFondazione}">Data
-					Fondazione</div>
-				<h5>Fondatore:</h5>
-				<div th:text="${casaProduttrice.fondatore}">Fondatore</div>
-				<h5>Nazione:</h5>
-				<a th:href="@{'nazione' + '/' + ${nazione.id}}">
-					<div th:text="${nazione.nome}">Nazione</div>
-				</a>
-				</div>
-				<div class="col">
-					<h5>DESCRIZIONE:</h5>
-					<p id="paragrafo" th:text="${casaProduttrice.descrizione}">Descrizione</p>
-				</div>
+		<div id="flex-container">
+			<section id="dati">
+			<img class="foto"
+				th:src="@{'/images' + '/' + ${casaProduttrice.nome} + '.jpg'}">
+				<ul>
+					<li><h4>Sede:</h4> <span th:text="${casaProduttrice.sede}">Sede</span></li>
+					<li><h4>Data Fondazione:</h4> <span
+						th:text="${casaProduttrice.dataFondazione}">Data Fondazione</span></li>
+					<li><h4>Fondatore:</h4> <span
+						th:text="${casaProduttrice.fondatore}">Fondatore</span></li>
+					<li><h4>Nazione:</h4> <a
+						th:href="@{'nazione' + '/' + ${nazione.id}}"> <span
+							th:text="${nazione.nome}">Nazione</span>
+					</a>
+				</ul>
+			</section>
+			<div class="col">
+				<h5>La Cantina:</h5>
+				<p id="paragrafo" th:text="${casaProduttrice.descrizione}">Descrizione</p>
 			</div>
-			
-			
-			
-			
+		</div>
+
+
+		<section id="titoloPagina">
+			<h3>Le produzioni della casa</h3>
+		</section>
+		<section id="dati">
 			<div class="objLista" th:each="alcolico : ${alcolici}">
 				<a th:href="@{'/alcolico' + '/' + ${alcolico.id}}"> <img
-					class="foto"
+					class="foto-alcolico"
 					th:src="@{'/images' + '/' + ${alcolico.nome} + '.jpg'}">
 				</a>
 				<section class="infoObj">
