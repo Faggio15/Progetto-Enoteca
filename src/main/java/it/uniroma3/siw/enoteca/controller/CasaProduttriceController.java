@@ -1,22 +1,26 @@
 package it.uniroma3.siw.enoteca.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.enoteca.controller.validator.CasaProduttriceValidator;
 import it.uniroma3.siw.enoteca.model.CasaProduttrice;
 import it.uniroma3.siw.enoteca.model.Nazione;
 import it.uniroma3.siw.enoteca.service.CasaProduttriceService;
 import it.uniroma3.siw.enoteca.service.NazioneService;
+import it.uniroma3.siw.enoteca.util.FileUploadUtil;
 import it.uniroma3.siw.enoteca.service.AlcolicoService;
 //vanno aggiunti metodi di: aggiunta/rimozione opere e curatori nella collezione corrente
 //va veriricato il funzionamento di deleteCollezione (specie il path e il return)
@@ -59,14 +63,21 @@ public class CasaProduttriceController {
     }
     
     @RequestMapping(value = "/admin/casaProduttrice", method = RequestMethod.POST)
-    public String newCasaProduttrice(@ModelAttribute("casaProduttrice") CasaProduttrice casaProduttrice, @RequestParam("n") String nazione,
-    									Model model, BindingResult bindingResult) {
+    public String newCasaProduttrice(@ModelAttribute("casaProduttrice") CasaProduttrice casaProduttrice, @RequestParam("n") String nazione, @RequestParam("image") MultipartFile multipartFile,
+    									Model model, BindingResult bindingResult) throws IOException {
     	this.casaProduttriceValidator.validate(casaProduttrice, bindingResult);
         if (!bindingResult.hasErrors()) {
             nazione.trim(); //elimino spazi bianchi iniziali e finali
             List<Nazione> naz = this.nazioneService.nazionePerNome(nazione); //prendo l'oggetto curatore
             casaProduttrice.setNazione(naz.get(0));  //setto il curatore della collezione 
-            this.casaProduttriceService.inserisci(casaProduttrice);
+            
+        	/*UPLOAD FOTO*/
+        	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            casaProduttrice.setPhotos(fileName);
+            CasaProduttrice savedCasaProduttrice = this.casaProduttriceService.inserisci(casaProduttrice);
+            String uploadDir = "src/main/resources/static/img/caseProduttrici/" + savedCasaProduttrice.getId();
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            
             model.addAttribute("caseProduttrici", this.casaProduttriceService.tutti());
             return "caseProduttrici.html";
         }

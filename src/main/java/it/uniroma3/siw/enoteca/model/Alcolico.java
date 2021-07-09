@@ -1,11 +1,15 @@
 package it.uniroma3.siw.enoteca.model;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -13,8 +17,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Alcolico {
-
-	
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -56,5 +58,12 @@ public class Alcolico {
 	public Alcolico() {
 		
 	}
+	
+	   @Transient
+	    public String getPhotosImagePath() {
+	        if (photos == null || id == null) return null;
+	         
+	        return "/img/alcolici/" + id + "/" + photos;
+	    }
 	
 }

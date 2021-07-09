@@ -12,8 +12,7 @@
 			<h2 th:text="${alcolico.nome}">Nome</h2>
 		</section>
 		<div id="flex-container">
-			<img class="foto-alcolico"
-				th:src="@{'/images' + '/' + ${alcolico.nome} + '.jpg'}">
+				 <img class="foto-alcolico" th:src="@{${alcolico.photosImagePath}}" />
 			<div class="col">
 				<h5>DESCRIZIONE:</h5>
 				<p id="paragrafo" th:text="${alcolico.descrizione}">Descrizione</p>
@@ -22,17 +21,17 @@
 		<section id="dati">
 			<ul>
 				<li><h4>Gradazione:</h4> <span
-					th:text="${alcolico.tassoAlcolico}">Gradazione</span></li>
+					th:text="${alcolico.gradoAlcolico}">Gradazione</span></li>
 				<li><h4>Quantita' Presenti:</h4> <span
 					th:text="${alcolico.quantitaPresenti}">Quantita' Presenti</span></li>
 				<li><h4>Formato:</h4> <span th:text="${alcolico.formato}">Formato</span></li>
 				<li><h4>Annata:</h4> <span th:text="${alcolico.annata}">Annata</span></li>
 				<li><h4>Tipologia:</h4> <a
-					th:href="@{'tipologia' + '/' + ${tipologia.id}}"> <span
+					th:href="@{'/tipologia' + '/' + ${tipologia.id}}"> <span
 						th:text="${tipologia.nome}">Tipologia</span>
 				</a>
 				<li><h4>Produttore:</h4> <a
-					th:href="@{'casaProduttrice' + '/' + ${casaProduttrice.id}}"> <span
+					th:href="@{'/casaProduttrice' + '/' + ${casaProduttrice.id}}"> <span
 						th:text="${casaProduttrice.nome}">Produttore</span>
 				</a>
 				<li><h4>Prezzo:</h4> <span th:text="${alcolico.prezzo}">Prezzo</span></li>

@@ -10,7 +10,7 @@
       
        <section id="dati">
        
-	<form th:action="@{/admin/alcolico}" method="POST" id="loginForm" th:object="${alcolico}">
+	<form th:action="@{/admin/alcolico}" method="POST" id="loginForm" th:object="${alcolico}" enctype="multipart/form-data">
 	  	
 	  	<div>
 		   <h1>Inserisci un alcolico</h1>
@@ -55,9 +55,6 @@
 				<span><input type="number" th:field="*{annata}" /></span>
 				<span th:if="${#fields.hasErrors('annata')}" th:errors="*{annata}"></span>
 			</div>
-			<div>
-			FOTO DA METTEREEEEEE
-			</div>
 			
 			 <div id="tendina" align="center">
 			   <h2>Tipologia:</h2>
@@ -71,6 +68,12 @@
                  <option th:each="casaProduttrice : ${caseProduttrici}" th:value="${casaProduttrice.nome}" th:text="${casaProduttrice.nome}">Nome Casa Produttrice</option>
                </select>
               </div>
+              
+            <div>
+			    <h2>Foto:</h2>
+                <span><input type="file" name="image" accept="image/png, image/jpeg, image/jpg" /></span>
+			</div>
+              
 			<div>
 			   <button type="submit">Invio</button>
 			</div>
