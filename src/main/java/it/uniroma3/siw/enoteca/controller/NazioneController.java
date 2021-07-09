@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import it.uniroma3.siw.enoteca.controller.validator.NazioneValidator;
 import it.uniroma3.siw.enoteca.model.Alcolico;
 import it.uniroma3.siw.enoteca.model.Nazione;
+import it.uniroma3.siw.enoteca.service.CasaProduttriceService;
 import it.uniroma3.siw.enoteca.service.NazioneService;
 import it.uniroma3.siw.enoteca.util.FileUploadUtil;
 
@@ -28,6 +29,9 @@ public class NazioneController {
 	
     @Autowired
     private NazioneValidator nazioneValidator;
+
+    @Autowired
+	private CasaProduttriceService casaProduttriceService;
     
 
     @RequestMapping(value="/admin/addNazione", method = RequestMethod.GET)
@@ -40,6 +44,7 @@ public class NazioneController {
     @RequestMapping(value = "/nazione/{id}", method = RequestMethod.GET)
     public String getNazione(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("nazione", this.nazioneService.nazionePerId(id));
+    	model.addAttribute("caseProduttrici", this.casaProduttriceService.trovaPerNazioneId(id));
     	return "nazione.html";
     }
 
@@ -66,4 +71,16 @@ public class NazioneController {
         }
         return "admin/nazioneForm.html";
     }
+    @RequestMapping(value= "/admin/deleteNazioni", method= RequestMethod.GET)
+    public String deleteArtistaGet(Model model) {
+    	model.addAttribute("nazioni", this.nazioneService.tutti());
+    	return "admin/deleteNazione.html";
+    }
+    
+    @RequestMapping(value = "/admin/deleteNazione/{id}", method = RequestMethod.POST)
+	public String deleteArtistaPost(@PathVariable("id") Long id, Model model) {
+		this.nazioneService.deleteNazioneById(id);
+		model.addAttribute("nazione", this.nazioneService.tutti());
+		return "admin/deleteNazione.html";
+	}
 }

@@ -50,4 +50,9 @@ public class NazioneService {
 		else 
 			return false;
 	}
+	
+	@Transactional
+	public void deleteNazioneById(Long id) {
+		this.nazioneRepository.deleteById(id);
+	}
 }

@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head
-	th:replace="fragments/base.html :: headerfiles(title='ER3 | Nazione')"></head>
+	th:replace="fragments/base.html :: headerfiles(title='ER3 | CaseProduttrici')"></head>
 
 <body>
 	<nav th:replace="fragments/base.html :: loginNav"></nav>
 	<header th:replace="fragments/base.html :: header"></header>
-	
+
 	<section id="principale">
 		<section id="titoloPagina">
-			<h2>
-				Le case produttrici in <div th:text="${nazione.nome}">Nome</div>
-			</h2>
+			<h2>Seleziona la casa produttrice che vuoi eliminare:</h2>
 		</section>
 		<section id="dati">
 			<div id="lista" th:each="casaProduttrice : ${caseProduttrici}">
 				<a th:href="@{'/casaProduttrice' + '/' + ${casaProduttrice.id}}">
-					<div id="elem" th:text="${casaProduttrice.nome}">Nome</div>
+					<div id="elem">
+			<span th:text="${casaProduttrice.nome}">Nome</span>
+				 <form th:action="@{'/admin/deleteCasaProduttrice' + '/' + ${casaProduttrice.id}}" method="POST">
+				    <button type="submit"><img th:src="@{'/images/delete.png'}" height="40px" width="40px"></button>
+			     </form>
+			</div>
 				</a>
 			</div>
 		</section>
