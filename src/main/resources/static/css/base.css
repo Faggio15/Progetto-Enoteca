@@ -146,6 +146,11 @@ Header {
 	cursor: pointer;
 }
 
+#elem:hover{
+	background-color: white;
+	color:  black;
+}
+
 /*flex-container delle pagine singole*/
 #flex-container {
 	display: flex;
@@ -168,7 +173,8 @@ Header {
 }
 
 .col {
-	background-color: WhiteSmoke;
+	background-color: rgb(0, 0, 0, 0.6);
+	color: white;
 	padding: 5px;
 	Height: 370px;
 	width: 50%;

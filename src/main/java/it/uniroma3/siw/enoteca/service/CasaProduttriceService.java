@@ -51,8 +51,8 @@ public class CasaProduttriceService {
 	}
 	
 	@Transactional
-	public List<CasaProduttrice> trovaPerNazione(Long id){
-		return casaProduttriceRepository.findByNazione(id);
+	public List<CasaProduttrice> trovaPerNazioneId(Long id){
+		return casaProduttriceRepository.findByNazioneId(id);
 	}
 
 	@Transactional

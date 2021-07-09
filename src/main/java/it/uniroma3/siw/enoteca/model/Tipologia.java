@@ -22,9 +22,7 @@ public class Tipologia {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
-	
-	
-	//necessario per l'aggiunta dell'alcolico
+
 	@Column(nullable=false)
 	private String nome;
 	

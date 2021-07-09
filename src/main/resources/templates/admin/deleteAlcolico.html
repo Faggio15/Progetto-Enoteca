@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head
-	th:replace="fragments/base.html :: headerfiles(title='ER3 | Tipologia')"></head>
+	th:replace="fragments/base.html :: headerfiles(title='ER3 | Alcolici')"></head>
 
 <body>
 	<nav th:replace="fragments/base.html :: loginNav"></nav>
@@ -9,15 +9,9 @@
 
 	<section id="principale">
 		<section id="titoloPagina">
-			<h2 th:text="${tipologia.nome}">Nome</h2>
+			<h2>Seleziona il prodotto che vuoi eliminare:</h2>
 		</section>
 		<section id="dati">
-
-			<h5>DESCRIZIONE:</h5>
-			<div th:text="${tipologia.descrizione}">Descrizione</div>
-			<section id="titoloPagina">
-				<h3>I nostri prodotti:</h3>
-			</section>
 			<div class="objLista" th:each="alcolico : ${alcolici}">
 				<a th:href="@{'/alcolico' + '/' + ${alcolico.id}}"> <img
 					class="foto-alcolico"
@@ -25,6 +19,13 @@
 				</a>
 				<section class="infoObj">
 					<div th:text="${alcolico.nome}">Nome</div>
+					<form
+						th:action="@{'/admin/deleteAlcolico' + '/' + ${alcolico.id}}"
+						method="POST">
+						<button type="submit">
+							<img th:src="@{'/images/delete.png'}" height="40px" width="40px">
+						</button>
+					</form>
 				</section>
 			</div>
 		</section>

@@ -22,7 +22,9 @@ public class AlcolicoValidator implements Validator {
 	public void validate(Object o, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "gradoAlcolico", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "quantitaPresenti", "required"); 
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "quantitaPresenti", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "prezzo", "required"); 
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "formato", "required"); 
 		
 		
 		if (!errors.hasErrors()) {

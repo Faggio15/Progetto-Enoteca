@@ -12,6 +12,6 @@ public interface CasaProduttriceRepository extends CrudRepository<CasaProduttric
 
 	public List<CasaProduttrice> findByNome(String nome);
 	
-	public List<CasaProduttrice> findByNazione(Long id);
+	public List<CasaProduttrice> findByNazioneId(Long id);
 
 }
