@@ -27,6 +27,7 @@ public class NazioneController {
     public String addNazione(Model model) {
     	model.addAttribute("nazione", new Nazione());
         return "admin/nazioneForm.html";
+
     }
 
     @RequestMapping(value = "/nazione/{id}", method = RequestMethod.GET)

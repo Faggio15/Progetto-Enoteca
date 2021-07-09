@@ -6,13 +6,13 @@
 <body>
 	<nav th:replace="fragments/base.html :: loginNav"></nav>
 	<header th:replace="fragments/base.html :: header"></header>
-	
+
 	<section id="principale">
 		<section id="titoloPagina">
 			<h2 th:text="${alcolico.nome}">Nome</h2>
 		</section>
 		<div id="flex-container">
-			<img class="foto"
+			<img class="foto-alcolico"
 				th:src="@{'/images' + '/' + ${alcolico.nome} + '.jpg'}">
 			<div class="col">
 				<h5>DESCRIZIONE:</h5>
@@ -20,24 +20,23 @@
 			</div>
 		</div>
 		<section id="dati">
-			<h5>Gradazione:</h5>
-			<div th:text="${alcolico.tassoAlcolico}">Tasso Alcolico</div>
-			<h5>Quantita':</h5>
-			<div th:text="${alcolico.quantitaPresenti}">Quantita</div>
-			<h5>Formato:</h5>
-			<div th:text="${alcolico.formato}">Formato</div>
-			<h5>Annata:</h5>
-			<div th:text="${alcolico.annata}">Annata</div>
-			<h5>Tipologia:</h5>
-			<a th:href="@{'/tipologia' + '/' + ${tipologia.id}}">
-				<div th:text="${tipologia.nome}">Nome</div>
-			</a>
-			<h5>Casa Produttrice:</h5>
-			<a th:href="@{'/casaProduttrice' + '/' + ${casaProduttrice.id}}">
-				<div th:text="${casaProduttrice.nome}">Nome</div>
-			</a>
-			<h5>Prezzo:</h5>
-			<div th:text="${alcolico.prezzo}">Prezzo</div>
+			<ul>
+				<li><h4>Gradazione:</h4> <span
+					th:text="${alcolico.tassoAlcolico}">Gradazione</span></li>
+				<li><h4>Quantita' Presenti:</h4> <span
+					th:text="${alcolico.quantitaPresenti}">Quantita' Presenti</span></li>
+				<li><h4>Formato:</h4> <span th:text="${alcolico.formato}">Formato</span></li>
+				<li><h4>Annata:</h4> <span th:text="${alcolico.annata}">Annata</span></li>
+				<li><h4>Tipologia:</h4> <a
+					th:href="@{'tipologia' + '/' + ${tipologia.id}}"> <span
+						th:text="${tipologia.nome}">Tipologia</span>
+				</a>
+				<li><h4>Produttore:</h4> <a
+					th:href="@{'casaProduttrice' + '/' + ${casaProduttrice.id}}"> <span
+						th:text="${casaProduttrice.nome}">Produttore</span>
+				</a>
+				<li><h4>Prezzo:</h4> <span th:text="${alcolico.prezzo}">Prezzo</span></li>
+			</ul>
 		</section>
 	</section>
 	<footer th:replace="fragments/base.html :: footer"></footer>
