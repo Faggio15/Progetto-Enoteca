@@ -1,5 +1,6 @@
 package it.uniroma3.siw.enoteca.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -40,7 +41,7 @@ public class CasaProduttrice {
 	
 	@Column(nullable=false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Long dataFondazione;
+	private LocalDate dataFondazione;
 	
 	private String fondatore;
 	
