@@ -29,10 +29,10 @@ public class NazioneController {
     private NazioneValidator nazioneValidator;
     
 
-    @RequestMapping(value="/addNazione", method = RequestMethod.GET)
+    @RequestMapping(value="/admin/addNazione", method = RequestMethod.GET)
     public String addNazione(Model model) {
     	model.addAttribute("nazione", new Nazione());
-        return "nazioneForm.html"; //ancora non esiste
+        return "admin/nazioneForm.html"; //ancora non esiste
     }
 
     @RequestMapping(value = "/nazione/{id}", method = RequestMethod.GET)
@@ -48,15 +48,15 @@ public class NazioneController {
     		return "nazioni.html";
     }
     
-    @RequestMapping(value = "/Nazione", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/nazione", method = RequestMethod.POST)
     public String newNazione(@ModelAttribute("nazione") Nazione nazione, 
     									Model model, BindingResult bindingResult) {
     	this.nazioneValidator.validate(nazione, bindingResult);
         if (!bindingResult.hasErrors()) {
         	this.nazioneService.inserisci(nazione);
             model.addAttribute("nazioni", this.nazioneService.tutti());
-            return "nazioni.html";//ancora non esiste
+            return "nazioni.html";
         }
-        return "nazioneForm.html";//ancora non esiste
+        return "admin/nazioneForm.html";
     }
 }

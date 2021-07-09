@@ -6,19 +6,21 @@
 <body>
 	<nav th:replace="fragments/base.html :: loginNav"></nav>
 	<header th:replace="fragments/base.html :: header"></header>
-	
+
 	<section id="principale">
 		<section id="titoloPagina">
 			<h2 th:text="${tipologia.nome}">Nome</h2>
 		</section>
 		<section id="dati">
-			<div class="col">
-				<h5>DESCRIZIONE:</h5>
-				<p id="paragrafo" th:text="${tipologia.descrizione}">Descrizione</p>
-			</div>
+
+			<h5>DESCRIZIONE:</h5>
+			<div th:text="${tipologia.descrizione}">Descrizione</div>
+			<section id="titoloPagina">
+				<h3>I nostri prodotti:</h3>
+			</section>
 			<div class="objLista" th:each="alcolico : ${alcolici}">
 				<a th:href="@{'/alcolico' + '/' + ${alcolico.id}}"> <img
-					class="foto"
+					class="foto-alcolico"
 					th:src="@{'/images' + '/' + ${alcolico.nome} + '.jpg'}">
 				</a>
 				<section class="infoObj">
