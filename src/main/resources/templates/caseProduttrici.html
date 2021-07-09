@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='ER3 | Tipologie')"></head>
+
+<body>
+	<nav th:replace="fragments/base.html :: loginNav"></nav>
+	<header th:replace="fragments/base.html :: header"></header>
+	
+	<section id="principale">
+		<section id="titoloPagina">
+			<h2>Tutte le case produttrici presenti nell'Enoteca</h2>
+		</section>
+		<section id="dati">
+			<div id="lista" th:each="casaProduttrice : ${caseProduttrici}">
+				<a th:href="@{'/casaProduttrice' + '/' + ${casaProduttrice.id}}">
+					<div id="elem" th:text="${casaProduttrice.nome}">Nome</div>
+				</a>
+			</div>
+		</section>
+	</section>
+	<footer th:replace="fragments/base.html :: footer"></footer>
+</body>
+</html>

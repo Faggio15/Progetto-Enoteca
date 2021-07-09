@@ -111,6 +111,102 @@ Header{
     Margin-bottom: 20px;
     Padding: 2px;
 }
+/*da verificare se funzionano*/
+
+#lista{
+	display:flex;
+	justify-content: stretch;
+	flex-direction: column;
+}
+
+.objList{
+   margin-top:30px;
+}
+
+.infoObj{
+	margin-top: 0px;
+	width: 95.5%;
+	text-align:center;
+	background-color: black;
+	border: 4px solid GhostWhite;
+	box-shadow: 5px 8px 10px 0px Black;
+	padding:5px;
+}
+
+#lista a{
+		text-decoration: none;
+}
+
+#elem{
+	background-color: black;
+	color:GhostWhite;
+	border:2px solid Azure;
+	text-align: center;
+	padding:20px;
+	font-size:30px;
+    cursor:pointer;
+}
+
+#flex-container{
+  display: flex;
+  flex-direction:row;
+  justify-content: space-around;
+  padding:20px;
+  Margin-top:0px;
+}
+
+.info-dati{
+	Text-align: center;
+    color:white;
+    Min-height:400px;
+    Margin-top: 20px;
+    Margin-left: 10%;
+    Margin-right: 10%;
+    Margin-bottom: 20px;
+    Padding: 2px;
+}
+
+.col{
+  background-color:DarkGray;
+  padding:5px;
+  Height:370px;
+  width:35%;
+  border-radius:10px;
+}
+
+#paragrafo{
+  height: 270px;
+  overflow:scroll;
+  margin: 10;
+  border-color: black;
+  border-width: 1px;
+  border-style: dotted;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.foto{
+    width: 380px;
+    height: 380px;
+    transition-duration: 1s;
+    -ms-transition-duration: 1s;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-property: transform;
+    -ms-transition-property: -ms-transform;
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    overflow:hidden;
+}
+
+.foto:hover {
+	-ms-transform: scale(1.2,1.2); /*explorer*/
+	-webkit-transform: scale(1.2,1.2); /*chrome e safari*/
+	-moz-transform: scale(1.2,1.2); /*firefox*/
+	-o-transform: scale(1.2,1.2); /*opera*/
+}
 
 /*FOOTER*/
 footer{

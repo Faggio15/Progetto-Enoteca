@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='ER3 | Tipologie')"></head>
+
+<body>
+	<nav th:replace="fragments/base.html :: loginNav"></nav>
+	<header th:replace="fragments/base.html :: header"></header>
+
+	<section id="principale">
+		<section id="titoloPagina">
+			<h2 th:text="${casaProduttrice.nome}">Nome</h2>
+		</section>
+		<section id="dati">
+			<div id="flex-container">
+			<div class="info-dati">
+				<h5>Sede:</h5>
+				<div th:text="${casaProduttrice.sede}">Sede</div>
+				<h5>Data Fondazione:</h5>
+				<div th:text="${casaProduttrice.dataFondazione}">Data
+					Fondazione</div>
+				<h5>Fondatore:</h5>
+				<div th:text="${casaProduttrice.fondatore}">Fondatore</div>
+				<h5>Nazione:</h5>
+				<a th:href="@{'nazione' + '/' + ${nazione.id}}">
+					<div th:text="${nazione.nome}">Nazione</div>
+				</a>
+				</div>
+				<div class="col">
+					<h5>DESCRIZIONE:</h5>
+					<p id="paragrafo" th:text="${casaProduttrice.descrizione}">Descrizione</p>
+				</div>
+			</div>
+			
+			
+			
+			
+			<div class="objLista" th:each="alcolico : ${alcolici}">
+				<a th:href="@{'/alcolico' + '/' + ${alcolico.id}}"> <img
+					class="foto"
+					th:src="@{'/images' + '/' + ${alcolico.nome} + '.jpg'}">
+				</a>
+				<section class="infoObj">
+					<div th:text="${alcolico.nome}">Nome</div>
+				</section>
+			</div>
+		</section>
+	</section>
+	<footer th:replace="fragments/base.html :: footer"></footer>
+</body>
+</html>
