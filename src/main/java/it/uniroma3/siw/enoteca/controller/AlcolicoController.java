@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapProperties.Credential;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -17,17 +20,28 @@ import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.enoteca.controller.validator.AlcolicoValidator;
 import it.uniroma3.siw.enoteca.model.Tipologia;
+import it.uniroma3.siw.enoteca.model.User;
 import it.uniroma3.siw.enoteca.model.CasaProduttrice;
+import it.uniroma3.siw.enoteca.model.Credentials;
 import it.uniroma3.siw.enoteca.model.Alcolico;
 import it.uniroma3.siw.enoteca.service.TipologiaService;
+import it.uniroma3.siw.enoteca.service.UserService;
 import it.uniroma3.siw.enoteca.util.FileUploadUtil;
+import net.bytebuddy.asm.Advice.This;
 import it.uniroma3.siw.enoteca.service.CasaProduttriceService;
+import it.uniroma3.siw.enoteca.service.CredentialsService;
 import it.uniroma3.siw.enoteca.service.AlcolicoService;
 
 //vanno aggiunti metodi di: aggiunta di artista nell'opera corrente
 //va veriricato il funzionamento di deleteOpera (specie il path e il return)
 @Controller
 public class AlcolicoController {
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private CredentialsService credentialsService;
 	
 	@Autowired
 	private AlcolicoService alcolicoService;
@@ -105,4 +119,27 @@ public class AlcolicoController {
 		model.addAttribute("alcolici", this.alcolicoService.tutti());
 		return "admin/deleteAlcolico.html";
 	}
+    
+    @RequestMapping(value = "/addPreferiti/{id}", method = RequestMethod.POST)
+   	public String addPreferiti(@PathVariable("id") Long id, Model model) {
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		User user = credentials.getUser();
+		List<Alcolico> alcoliciPref = user.getAlcoliciPreferiti();
+		alcoliciPref.add(this.alcolicoService.alcolicoPerId(id));
+		List<User> utenti = this.alcolicoService.alcolicoPerId(id).getUtenti();
+		utenti.add(user);
+		model.addAttribute("alcolici", this.alcolicoService.tutti());
+   		return "alcolici.html";
+   	}
+    
+    @RequestMapping(value = "/wishlist", method = RequestMethod.GET)
+   	public String visualizzaPreferiti(Model model) {
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		User user = credentials.getUser();
+		List<Alcolico> alcoliciDaMostrare = user.getAlcoliciPreferiti();
+    	model.addAttribute("alcolici", alcoliciDaMostrare);
+   		return "alcolici.html";
+   	}
 }

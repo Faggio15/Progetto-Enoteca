@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.enoteca.model.Alcolico;
+import it.uniroma3.siw.enoteca.model.User;
 import it.uniroma3.siw.enoteca.repository.AlcolicoRepository;
 
 @Service
@@ -61,4 +62,5 @@ public class AlcolicoService{
 	public void deleteAlcolicoById(Long id) {
 		alcolicoRepository.deleteById(id);
 	}
+
 }

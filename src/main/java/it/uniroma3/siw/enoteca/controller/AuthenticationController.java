@@ -75,6 +75,6 @@ public class AuthenticationController {
             credentialsService.saveCredentials(credentials);
             return "registrationSuccessful";
         }
-        return "registerUser";
+        return "registerForm";
     }
 }

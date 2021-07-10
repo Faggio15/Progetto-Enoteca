@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import it.uniroma3.siw.enoteca.model.Alcolico;
+import it.uniroma3.siw.enoteca.model.User;
 
 @Repository
 public interface AlcolicoRepository extends CrudRepository<Alcolico, Long> {
@@ -15,4 +16,5 @@ public interface AlcolicoRepository extends CrudRepository<Alcolico, Long> {
 	public List<Alcolico> findByCasaProduttriceId(Long id);
 	
 	public List<Alcolico> findByTipologiaId(Long id);
+
 }

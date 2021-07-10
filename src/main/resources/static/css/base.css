@@ -273,3 +273,23 @@ div img {
 	width: 100%;
 	height: 100%;
 }
+
+/*SEARCH*/
+#searchForm{
+	background-color:blue;
+	border: 2px solid red;
+	margin-top:10px;
+	margin-left:840px;
+	margin-right:20px;
+	width:30%;
+}
+
+#searchForm input{
+    background-color:blue;
+	border: 2px solid red;
+    margin: .4rem 0;
+}
+
+#formPreferiti{
+	margin-left: 120px;
+}
