@@ -80,7 +80,7 @@ public class NazioneController {
     @RequestMapping(value = "/admin/deleteNazione/{id}", method = RequestMethod.POST)
 	public String deleteArtistaPost(@PathVariable("id") Long id, Model model) {
 		this.nazioneService.deleteNazioneById(id);
-		model.addAttribute("nazione", this.nazioneService.tutti());
+		model.addAttribute("nazioni", this.nazioneService.tutti());
 		return "admin/deleteNazione.html";
 	}
 }

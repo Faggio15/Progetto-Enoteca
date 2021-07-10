@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head
-	th:replace="fragments/base.html :: headerfiles(title='ER3 | Alcolici')"></head>
+	th:replace="fragments/base.html :: headerfiles(title='ER3 | WishList')"></head>
 
 <body>
 	<nav th:replace="fragments/base.html :: loginNav"></nav>
 	<header th:replace="fragments/base.html :: header"></header>
-
+	
 	<section id="principale">
 		<section id="titoloPagina">
-			<h2>Seleziona il prodotto che vuoi eliminare:</h2>
+			<h2>I tuoi prodotti preferiti:</h2>
 		</section>
 		<section id="dati">
 			<div class="objLista" th:each="alcolico : ${alcolici}">
@@ -18,12 +18,9 @@
 				</a>
 				<section class="infoObj">
 					<div th:text="${alcolico.nome}">Nome</div>
-					<form th:action="@{'/admin/deleteAlcolico' + '/' + ${alcolico.id}}"
-						method="POST">
-						<button type="submit">
-							<img th:src="@{'/images/delete.png'}" height="40px" width="40px">
-						</button>
-					</form>
+					<form sec:authorize="hasAuthority('DEFAULT')" th:action="@{'/deletePreferiti' + '/' + ${alcolico.id}}" id="formElimina" method="POST">
+				 <button type="submit">Elimina dai preferiti</button>
+				 </form>
 				</section>
 			</div>
 		</section>

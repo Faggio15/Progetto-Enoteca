@@ -6,16 +6,21 @@
 <body>
 	<nav th:replace="fragments/base.html :: loginNav"></nav>
 	<header th:replace="fragments/base.html :: header"></header>
-	
+
 	<section id="principale">
 		<section id="titoloPagina">
 			<h2>Tutte le case produttrici presenti nell'Enoteca</h2>
 		</section>
 		<section id="dati">
-			<div id="lista" th:each="casaProduttrice : ${caseProduttrici}">
-				<a th:href="@{'/casaProduttrice' + '/' + ${casaProduttrice.id}}">
-					<div id="elem" th:text="${casaProduttrice.nome}">Nome</div>
-				</a>
+			<div id="lista">
+				<div class="objLista" th:each="casaProduttrice : ${caseProduttrici}">
+					<a th:href="@{'/casaProduttrice' + '/' + ${casaProduttrice.id}}">
+						<img class="foto" th:src="@{${casaProduttrice.photosImagePath}}" />
+					</a>
+					<section class="infoObj">
+						<div th:text="${casaProduttrice.nome}">Nome</div>
+					</section>
+				</div>
 			</div>
 		</section>
 	</section>
