@@ -14,6 +14,7 @@
         <li><a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a></li>
         <li><a sec:authorize="isAnonymous()" th:href="@{/register}">Registrati</a></li>
         <li><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/default}">Area Riservata</a></li>
+        <li><a sec:authorize="hasAuthority('DEFAULT')" th:href="@{/wishlist}">Wishlist</a></li>
         <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
     </ul>
     </nav>
