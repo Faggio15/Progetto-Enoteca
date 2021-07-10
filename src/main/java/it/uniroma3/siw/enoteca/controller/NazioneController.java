@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.enoteca.controller.validator.NazioneValidator;
-import it.uniroma3.siw.enoteca.model.Alcolico;
 import it.uniroma3.siw.enoteca.model.Nazione;
 import it.uniroma3.siw.enoteca.service.CasaProduttriceService;
 import it.uniroma3.siw.enoteca.service.NazioneService;
@@ -72,15 +71,15 @@ public class NazioneController {
         return "admin/nazioneForm.html";
     }
     @RequestMapping(value= "/admin/deleteNazioni", method= RequestMethod.GET)
-    public String deleteArtistaGet(Model model) {
+    public String deleteNazioneGet(Model model) {
     	model.addAttribute("nazioni", this.nazioneService.tutti());
     	return "admin/deleteNazione.html";
     }
     
     @RequestMapping(value = "/admin/deleteNazione/{id}", method = RequestMethod.POST)
-	public String deleteArtistaPost(@PathVariable("id") Long id, Model model) {
+	public String deleteNazionePost(@PathVariable("id") Long id, Model model) {
 		this.nazioneService.deleteNazioneById(id);
-		model.addAttribute("nazione", this.nazioneService.tutti());
+		model.addAttribute("nazioni", this.nazioneService.tutti());
 		return "admin/deleteNazione.html";
 	}
 }

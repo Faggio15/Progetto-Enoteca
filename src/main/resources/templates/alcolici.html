@@ -13,9 +13,8 @@
 		</section>
 		<section id="dati">
 			<div class="objLista" th:each="alcolico : ${alcolici}">
-				<a th:href="@{'/alcolico' + '/' + ${alcolico.id}}"> <img
-					class="foto-alcolico"
-					th:src="@{'/images' + '/' + ${alcolico.nome} + '.jpg'}">
+				<a th:href="@{'/alcolico' + '/' + ${alcolico.id}}"> 
+				  <img class="foto-alcolico" th:src="@{${alcolico.photosImagePath}}" />
 				</a>
 				<section class="infoObj">
 					<div th:text="${alcolico.nome}">Nome</div>
