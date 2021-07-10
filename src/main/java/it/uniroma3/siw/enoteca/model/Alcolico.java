@@ -4,6 +4,7 @@ package it.uniroma3.siw.enoteca.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -58,7 +59,7 @@ public class Alcolico {
 	@ManyToOne
 	private CasaProduttrice casaProduttrice;
 	
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	List<User> utenti;
 	
 	public Alcolico() {
