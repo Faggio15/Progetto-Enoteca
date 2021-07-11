@@ -17,7 +17,7 @@
 					<div id="elem">
 			<span th:text="${casaProduttrice.nome}">Nome</span>
 				 <form th:action="@{'/admin/deleteCasaProduttrice' + '/' + ${casaProduttrice.id}}" method="POST">
-				    <button type="submit"><img th:src="@{'/images/delete.png'}" height="40px" width="40px"></button>
+				    <button type="submit"><img id="delete" th:src="@{'/img/delete.png'}"></button>
 			     </form>
 			</div>
 				</a>

@@ -10,10 +10,12 @@
 </head>
 <body>
     <nav th:fragment="loginNav" id="loginNav">
-       <form id="searchForm">
+       <form id="searchForm" th:action="@{/searchAlcolico}" method="POST">
          <div>
              <input type="search" id="site-search" name="q" placeholder="cerca alcolico nel sito...">
-             <button type="submit"><img src="img/search.png" /></button>
+             <button type="submit">
+                 <img th:src="@{'/img/search.png'}" />
+             </button>
          </div>
        </form>
     <ul>

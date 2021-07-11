@@ -140,4 +140,11 @@ public class AlcolicoController {
     	model.addAttribute("alcolici", alcoliciDaMostrare);
    		return "alcolici.html";
    	}
+    
+    @RequestMapping(value= "/searchAlcolico", method= RequestMethod.POST)
+    public String cercaAlcolico(@RequestParam("q") String cerca, Model model) {
+    	List<Alcolico> alcoliciCercati = this.alcolicoService.cercaPerNomeLike(cerca);
+    	model.addAttribute("alcolici", alcoliciCercati);
+    	return "alcolici.html";
+    }
 }
