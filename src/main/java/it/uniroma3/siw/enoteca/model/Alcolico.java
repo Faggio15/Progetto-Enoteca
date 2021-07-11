@@ -59,7 +59,7 @@ public class Alcolico {
 	@ManyToOne
 	private CasaProduttrice casaProduttrice;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany
 	List<User> utenti;
 	
 	public Alcolico() {

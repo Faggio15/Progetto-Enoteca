@@ -127,8 +127,10 @@ public class AlcolicoController {
 		User user = credentials.getUser();
 		List<Alcolico> alcoliciPref = user.getAlcoliciPreferiti();
 		alcoliciPref.remove(this.alcolicoService.alcolicoPerId(id));
+		this.alcolicoService.inserisci(this.alcolicoService.alcolicoPerId(id));
 		List<User> utenti = this.alcolicoService.alcolicoPerId(id).getUtenti();
 		utenti.remove(user);
+		this.userService.saveUser(user);
 		model.addAttribute("alcolici", alcoliciPref);
    		return "wishList.html";
    	}
