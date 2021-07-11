@@ -14,10 +14,13 @@
 			</h2>
 		</section>
 		<section id="dati">
-			<div id="lista" th:each="casaProduttrice : ${caseProduttrici}">
+			<div class="objLista" th:each="casaProduttrice : ${caseProduttrici}">
 				<a th:href="@{'/casaProduttrice' + '/' + ${casaProduttrice.id}}">
-					<div id="elem" th:text="${casaProduttrice.nome}">Nome</div>
+					<img class="foto" th:src="@{${casaProduttrice.photosImagePath}}" />
 				</a>
+				<section class="infoObj">
+					<div th:text="${casaProduttrice.nome}">Nome</div>
+				</section>
 			</div>
 		</section>
 	</section>

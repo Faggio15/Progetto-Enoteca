@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='ER3 | WishList')"></head>
+
+<body>
+	<nav th:replace="fragments/base.html :: loginNav"></nav>
+	<header th:replace="fragments/base.html :: header"></header>
+	
+	<section id="principale">
+		<section id="titoloPagina">
+			<h2>I tuoi prodotti preferiti:</h2>
+		</section>
+		<section id="dati">
+			<div class="objLista" th:each="alcolico : ${alcolici}">
+				<a th:href="@{'/alcolico' + '/' + ${alcolico.id}}"> <img
+					class="foto-alcolico" th:src="@{${alcolico.photosImagePath}}" />
+				</a>
+				<section class="infoObj">
+					<div th:text="${alcolico.nome}">Nome</div>
+					<form sec:authorize="hasAuthority('DEFAULT')" th:action="@{'/deletePreferiti' + '/' + ${alcolico.id}}" id="formElimina" method="POST">
+				 <button type="submit">Elimina dai preferiti</button>
+				 </form>
+				</section>
+			</div>
+		</section>
+	</section>
+	<footer th:replace="fragments/base.html :: footer"></footer>
+</body>
+</html>

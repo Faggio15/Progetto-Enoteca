@@ -41,7 +41,10 @@
 				<span><input type="text" th:field="*{fondatore}" /></span>
 				<span th:if="${#fields.hasErrors('fondatore')}" th:errors="*{fondatore}"></span>
 			</div>
-
+			<div>
+				<h2>Descrizione:</h2>
+				<div><textarea th:field="*{descrizione}" rows="10" cols="30" maxlength:"2000" required /></div>
+			</div>
 			 <div id="tendina" align="center">
 			   <h2>Nazione:</h2>
                <select name="n">
@@ -60,7 +63,7 @@
 		</div>
 		
 		
+	</form>
        </section>
      
      </section>
-	</form>

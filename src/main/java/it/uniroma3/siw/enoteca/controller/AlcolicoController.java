@@ -118,6 +118,21 @@ public class AlcolicoController {
 		return "admin/deleteAlcolico.html";
 	}
     
+    @RequestMapping(value = "/deletePreferiti/{id}", method = RequestMethod.POST)
+   	public String deletePreferiti(@PathVariable("id") Long id, Model model) {
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		User user = credentials.getUser();
+		List<Alcolico> alcoliciPref = user.getAlcoliciPreferiti();
+		alcoliciPref.remove(this.alcolicoService.alcolicoPerId(id));
+		this.alcolicoService.inserisci(this.alcolicoService.alcolicoPerId(id));
+		List<User> utenti = this.alcolicoService.alcolicoPerId(id).getUtenti();
+		utenti.remove(user);
+		this.userService.saveUser(user);
+		model.addAttribute("alcolici", alcoliciPref);
+   		return "wishList.html";
+   	}
+    
     @RequestMapping(value = "/addPreferiti/{id}", method = RequestMethod.POST)
    	public String addPreferiti(@PathVariable("id") Long id, Model model) {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -136,9 +151,9 @@ public class AlcolicoController {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 		User user = credentials.getUser();
-		List<Alcolico> alcoliciDaMostrare = user.getAlcoliciPreferiti();
-    	model.addAttribute("alcolici", alcoliciDaMostrare);
-   		return "alcolici.html";
+		List<Alcolico> alcoliciPref = user.getAlcoliciPreferiti();
+		model.addAttribute("alcolici", alcoliciPref);
+   		return "wishlist.html";
    	}
     
     @RequestMapping(value= "/searchAlcolico", method= RequestMethod.POST)
