@@ -3,25 +3,21 @@
   <head th:replace="fragments/base.html :: headerfiles(title='ER3 | Homepage')"></head>
 
   <body>
+
     <nav th:replace="fragments/base.html :: loginNav"></nav>
+    
     <header th:replace="fragments/base.html :: header"></header>
      
      <section id="principale">
     
        <section id="titoloPagina" >
-            <form id="searchForm">
-              <div>
-               <input type="search" id="site-search" name="q" aria-label="Search through site content" placheholder="search...">
-               <button>Search</button>
-              </div>
-            </form>
          <h2>ENOTECA ROMA TRE</h2>
        </section>
       
        <section id="dati">
           <div id="homeAlcolici">
-            <div th:each="opera : ${opere}" class="immagini">
-              <img th:src="@{'/images' + '/' + ${opera.titolo} + '.jpg'}">
+            <div th:each="alcolico : ${alcolici}" class="immagini">
+             <img th:src="@{${alcolico.photosImagePath}}"/>
          	</div>          
           </div>
        </section>

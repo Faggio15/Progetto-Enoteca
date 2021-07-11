@@ -111,6 +111,7 @@ Header {
 	Margin-bottom: 20px;
 	Padding: 2px;
 }
+
 /*Liste*/
 #lista {
 	display: flex;
@@ -132,6 +133,13 @@ Header {
 	padding: 5px;
 }
 
+#delete{
+	height:40px;
+    width:40px;
+    padding-top:20px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
 #lista a {
 	text-decoration: none;
 }
@@ -209,6 +217,7 @@ Header {
 }
 
 .foto-alcolico {
+	margin-top:20px;
 	width: 380px;
 	height: 380px;
 	transition-duration: 1s;
@@ -263,8 +272,8 @@ footer {
 }
 
 .immagini {
-	width: 380px;
-	height: 380px;
+	width: 340px;
+	height: 340px;
 	margin-bottom: 20px;
 }
 
@@ -276,18 +285,27 @@ div img {
 
 /*SEARCH*/
 #searchForm{
-	background-color:blue;
-	border: 2px solid red;
-	margin-top:10px;
-	margin-left:840px;
-	margin-right:20px;
-	width:30%;
+	padding:5px;
+	position:absolute;
+    top:10px;
+	left:20px;
+	width:40%;
 }
 
 #searchForm input{
-    background-color:blue;
-	border: 2px solid red;
+	font-size: 18px;
+	background-color: black;
+	color:white;
+	border: 2px solid white;
     margin: .4rem 0;
+}
+
+#searchForm button{
+	background-color:black;
+    border:2px solid black;
+	height:50px;
+	width:60px;
+	cursor:pointer;
 }
 
 #formPreferiti{

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.ldap.embedded.EmbeddedLdapProperties.Credential;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,6 @@ import it.uniroma3.siw.enoteca.model.Alcolico;
 import it.uniroma3.siw.enoteca.service.TipologiaService;
 import it.uniroma3.siw.enoteca.service.UserService;
 import it.uniroma3.siw.enoteca.util.FileUploadUtil;
-import net.bytebuddy.asm.Advice.This;
 import it.uniroma3.siw.enoteca.service.CasaProduttriceService;
 import it.uniroma3.siw.enoteca.service.CredentialsService;
 import it.uniroma3.siw.enoteca.service.AlcolicoService;
@@ -81,7 +79,7 @@ public class AlcolicoController {
     
     @RequestMapping(value = "/admin/alcolico", method = RequestMethod.POST)
     public String newAlcolico(@ModelAttribute("alcolico") Alcolico alcolico,   @RequestParam("t") String tipologia,
-    		@RequestParam("cp") String casaProduttrice, @RequestParam("image") MultipartFile multipartFile, Model model, BindingResult bindingResult) throws IOException {
+    		@RequestParam("cp") String casaProduttrice, @RequestParam("image") MultipartFile multipartFile, Model model, BindingResult bindingResult) throws IOException  {
     	
         
     	this.alcolicoValidator.validate(alcolico, bindingResult);
@@ -157,4 +155,11 @@ public class AlcolicoController {
 		model.addAttribute("alcolici", alcoliciPref);
    		return "wishlist.html";
    	}
+    
+    @RequestMapping(value= "/searchAlcolico", method= RequestMethod.POST)
+    public String cercaAlcolico(@RequestParam("q") String cerca, Model model) {
+    	List<Alcolico> alcoliciCercati = this.alcolicoService.cercaPerNomeLike(cerca);
+    	model.addAttribute("alcolici", alcoliciCercati);
+    	return "alcolici.html";
+    }
 }

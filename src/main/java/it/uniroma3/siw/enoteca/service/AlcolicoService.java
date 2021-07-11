@@ -63,5 +63,8 @@ public class AlcolicoService{
 		alcolicoRepository.deleteById(id);
 	}
 
+	public List<Alcolico> cercaPerNomeLike(String cerca) {
+		return this.alcolicoRepository.findByNomeContains(cerca);
+	}
 
 }
