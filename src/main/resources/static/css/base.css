@@ -217,6 +217,7 @@ Header {
 }
 
 .foto-alcolico {
+	margin-top:20px;
 	width: 380px;
 	height: 380px;
 	transition-duration: 1s;

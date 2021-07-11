@@ -23,7 +23,7 @@
 						<form th:action="@{'/admin/deleteNazione' + '/' + ${nazione.id}}"
 						method="POST">
 						<button type="submit">
-							<img th:src="@{'/images/delete.png'}" height="40px" width="40px">
+							<img id="delete" th:src="@{'/img/delete.png'}">
 						</button>
 					</form>
 					</section>
