@@ -64,7 +64,7 @@ public class AlcolicoService{
 	}
 
 	public List<Alcolico> cercaPerNomeLike(String cerca) {
-		return this.alcolicoRepository.findByNomeContains(cerca);
+		return this.alcolicoRepository.findByNomeContainsIgnoreCase(cerca);
 	}
 
 }
