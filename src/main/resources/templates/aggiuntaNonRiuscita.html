@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title='ER3 | Aggiunta Non Riuscita')">
+</head>
+<body>
+	<nav th:replace="fragments/base.html :: loginNav"></nav>
+	<header th:replace="fragments/base.html :: header"></header>
+
+	<section id="principale">
+
+		<section id="titoloPagina">
+			<h2>Aggiunta non riuscita</h2>
+		</section>
+
+		<section id="dati">
+			<h2>
+				L'alcolico da te scelto e' gia' presente nella tua <a
+					th:href="@{'/wishlist'}">wishlist</a>
+			</h2>
+			<h2>
+				Potrebbero piacerti anche <a th:href="@{'/alcolici'}">questi
+					prodotti</a>
+			</h2>
+		</section>
+
+	</section>
+
+	<footer th:replace="fragments/base.html :: footer"></footer>
+</body>
+</html>

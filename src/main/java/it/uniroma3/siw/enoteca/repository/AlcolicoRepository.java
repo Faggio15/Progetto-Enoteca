@@ -17,6 +17,6 @@ public interface AlcolicoRepository extends CrudRepository<Alcolico, Long> {
 	
 	public List<Alcolico> findByTipologiaId(Long id);
 
-	public List<Alcolico> findByNomeContains(String nome);
+	public List<Alcolico> findByNomeContainsIgnoreCase(String nome);
 
 }
