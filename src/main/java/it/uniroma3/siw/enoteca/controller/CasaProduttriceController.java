@@ -47,7 +47,7 @@ public class CasaProduttriceController {
     @RequestMapping(value="/admin/addCasaProduttrice", method = RequestMethod.GET)
     public String addCasaProduttrice(Model model) {
     	model.addAttribute("casaProduttrice", new CasaProduttrice());
-
+    	model.addAttribute("nazioni", this.nazioneService.tutti());
     	return "admin/casaProduttriceForm.html";
     	}
 
@@ -102,7 +102,7 @@ public class CasaProduttriceController {
 		if(!(casaDaRimuovere.getPhotos()==null)) {
 	   	String uploadDir ="src/main/resources/static/img/caseProduttrici/"+ casaDaRimuovere.getId();
 		Path uploadPath = Paths.get(uploadDir);
-		FileUtils.deleteDirectory(uploadPath.toFile());;
+		FileUtils.deleteDirectory(uploadPath.toFile());
 		}
     	
 		this.casaProduttriceService.deleteCasaProduttriceById(id);
