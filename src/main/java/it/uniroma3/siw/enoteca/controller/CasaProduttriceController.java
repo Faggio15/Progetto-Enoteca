@@ -1,8 +1,11 @@
 package it.uniroma3.siw.enoteca.controller;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +47,7 @@ public class CasaProduttriceController {
     @RequestMapping(value="/admin/addCasaProduttrice", method = RequestMethod.GET)
     public String addCasaProduttrice(Model model) {
     	model.addAttribute("casaProduttrice", new CasaProduttrice());
-    	model.addAttribute("nazioni", this.nazioneService.tutti());
+
     	return "admin/casaProduttriceForm.html";
     	}
 
@@ -81,6 +84,7 @@ public class CasaProduttriceController {
             model.addAttribute("caseProduttrici", this.casaProduttriceService.tutti());
             return "caseProduttrici.html";
         }
+    	model.addAttribute("nazioni", this.nazioneService.tutti());
         return "admin/casaProduttriceForm.html";
     }
     
@@ -91,7 +95,16 @@ public class CasaProduttriceController {
     }
     
     @RequestMapping(value = "/admin/deleteCasaProduttrice/{id}", method = RequestMethod.POST)
-	public String deleteCollezionePost(@PathVariable("id") Long id, Model model) {
+	public String deleteCollezionePost(@PathVariable("id") Long id, Model model) throws IOException {
+    	
+    	/*DELETE FOTO*/
+    	CasaProduttrice casaDaRimuovere = this.casaProduttriceService.casaProduttricePerId(id);
+		if(!(casaDaRimuovere.getPhotos()==null)) {
+	   	String uploadDir ="src/main/resources/static/img/caseProduttrici/"+ casaDaRimuovere.getId();
+		Path uploadPath = Paths.get(uploadDir);
+		FileUtils.deleteDirectory(uploadPath.toFile());;
+		}
+    	
 		this.casaProduttriceService.deleteCasaProduttriceById(id);
 		model.addAttribute("caseProduttrici", this.casaProduttriceService.tutti());
 		return "admin/deleteCasaProduttrice.html";
