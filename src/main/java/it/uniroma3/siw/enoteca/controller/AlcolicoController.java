@@ -153,11 +153,12 @@ public class AlcolicoController {
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 		User user = credentials.getUser();
 		List<Alcolico> alcoliciPref = user.getAlcoliciPreferiti();
+		if(alcoliciPref.contains(this.alcolicoService.alcolicoPerId(id)))
+			return "aggiuntaNonRiuscita.html";
 		alcoliciPref.add(this.alcolicoService.alcolicoPerId(id));
 		List<User> utenti = this.alcolicoService.alcolicoPerId(id).getUtenti();
 		utenti.add(user);
-		model.addAttribute("alcolici", this.alcolicoService.tutti());
-   		return "alcolici.html";
+   		return "aggiuntaRiuscita.html";
    	}
     
     @RequestMapping(value = "/wishlist", method = RequestMethod.GET)

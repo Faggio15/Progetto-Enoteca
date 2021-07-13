@@ -15,7 +15,7 @@
 		    <div>
 				 <img class="foto-alcolico" th:src="@{${alcolico.photosImagePath}}" />
 				 <form sec:authorize="hasAuthority('DEFAULT')" th:action="@{'/addPreferiti' + '/' + ${alcolico.id}}" id="formPreferiti" method="POST">
-				 <button type="submit">Aggiungi ai preferiti</button>
+				 <button id="buttonPreferiti" type="submit">Aggiungi ai preferiti</button>
 				 </form>
 		    </div>
 			<div class="col">

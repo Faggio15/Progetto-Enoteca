@@ -272,8 +272,8 @@ footer {
 }
 
 .immagini {
-	width: 340px;
-	height: 340px;
+	width: 320px;
+	height: 320px;
 	margin-bottom: 20px;
 }
 
@@ -314,4 +314,24 @@ div img {
 
 #formElimina{
 	text-align: center;
+}
+
+#buttonPreferiti{
+	background-color:black;
+	color:white;
+	border: 2px solid white;
+	font-size: 20px;
+}
+
+#buttonPreferiti:hover{
+	background-color:rgb(122, 49, 68);
+	color: white;
+}
+
+a{
+	color:white;
+}
+
+a:hover{
+	color:rgb(122, 49, 68);
 }
