@@ -1,8 +1,11 @@
 package it.uniroma3.siw.enoteca.controller;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -101,6 +104,8 @@ public class AlcolicoController {
             model.addAttribute("alcolici", this.alcolicoService.tutti());
             return "alcolici.html";
         }
+    	model.addAttribute("tipologie", this.tipologiaService.tutti());
+    	model.addAttribute("caseProduttrici", this.casaProduttriceService.tutti());
         return "admin/alcolicoForm.html";
     }
 
@@ -112,7 +117,16 @@ public class AlcolicoController {
     }
     
     @RequestMapping(value = "/admin/deleteAlcolico/{id}", method = RequestMethod.POST)
-	public String deleteAlcolicoPost(@PathVariable("id") Long id, Model model) {
+	public String deleteAlcolicoPost(@PathVariable("id") Long id, Model model) throws IOException {
+
+		/*DELETE FOTO*/
+		Alcolico alcolicoDaRimuovere = this.alcolicoService.alcolicoPerId(id);
+		if(!(alcolicoDaRimuovere.getPhotos()==null)) {
+	   	String uploadDir ="src/main/resources/static/img/alcolici/"+ alcolicoDaRimuovere.getId();
+		Path uploadPath = Paths.get(uploadDir);
+		FileUtils.deleteDirectory(uploadPath.toFile());;
+		}
+		
 		this.alcolicoService.deleteAlcolicoById(id);
 		model.addAttribute("alcolici", this.alcolicoService.tutti());
 		return "admin/deleteAlcolico.html";

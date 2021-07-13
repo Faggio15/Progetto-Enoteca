@@ -1,7 +1,10 @@
 package it.uniroma3.siw.enoteca.controller;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.enoteca.controller.validator.NazioneValidator;
+import it.uniroma3.siw.enoteca.model.CasaProduttrice;
 import it.uniroma3.siw.enoteca.model.Nazione;
 import it.uniroma3.siw.enoteca.service.CasaProduttriceService;
 import it.uniroma3.siw.enoteca.service.NazioneService;
@@ -77,7 +81,16 @@ public class NazioneController {
     }
     
     @RequestMapping(value = "/admin/deleteNazione/{id}", method = RequestMethod.POST)
-	public String deleteNazionePost(@PathVariable("id") Long id, Model model) {
+	public String deleteNazionePost(@PathVariable("id") Long id, Model model) throws IOException {
+    	
+    	/*DELETE FOTO*/
+    	Nazione nazioneDaRimuovere = this.nazioneService.nazionePerId(id);
+		if(!(nazioneDaRimuovere.getPhotos()==null)) {
+	   	String uploadDir ="src/main/resources/static/img/nazioni/"+ nazioneDaRimuovere.getId();
+		Path uploadPath = Paths.get(uploadDir);
+		FileUtils.deleteDirectory(uploadPath.toFile());;
+		}
+    	
 		this.nazioneService.deleteNazioneById(id);
 		model.addAttribute("nazioni", this.nazioneService.tutti());
 		return "admin/deleteNazione.html";

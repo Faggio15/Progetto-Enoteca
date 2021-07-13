@@ -19,7 +19,9 @@
 				<section class="infoObj">
 					<div th:text="${alcolico.nome}">Nome</div>
 					<form sec:authorize="hasAuthority('DEFAULT')" th:action="@{'/deletePreferiti' + '/' + ${alcolico.id}}" id="formElimina" method="POST">
-				 <button type="submit">Elimina dai preferiti</button>
+				 <button type="submit">
+				    <img id="delete" th:src="@{'/img/delete.png'}">
+				 </button>
 				 </form>
 				</section>
 			</div>
