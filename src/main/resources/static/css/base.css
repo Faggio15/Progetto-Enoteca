@@ -201,6 +201,7 @@ Header {
 }
 
 .foto {
+	margin-top:20px;
 	width: 380px;
 	height: 200px;
 	transition-duration: 1s;
@@ -219,7 +220,7 @@ Header {
 .foto-alcolico {
 	margin-top:20px;
 	width: 380px;
-	height: 380px;
+	height: 480px;
 	transition-duration: 1s;
 	-ms-transition-duration: 1s;
 	-webkit-transition-duration: 1s;
@@ -273,7 +274,7 @@ footer {
 
 .immagini {
 	width: 320px;
-	height: 320px;
+	height: 420px;
 	margin-bottom: 20px;
 }
 

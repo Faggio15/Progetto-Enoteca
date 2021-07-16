@@ -1,5 +1,8 @@
 package it.uniroma3.siw.enoteca.controller;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,12 +15,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.enoteca.controller.validator.CredentialsValidator;
 import it.uniroma3.siw.enoteca.controller.validator.UserValidator;
+import it.uniroma3.siw.enoteca.model.Alcolico;
 import it.uniroma3.siw.enoteca.model.Credentials;
 import it.uniroma3.siw.enoteca.model.User;
+import it.uniroma3.siw.enoteca.service.AlcolicoService;
 import it.uniroma3.siw.enoteca.service.CredentialsService;
+import net.bytebuddy.asm.Advice.This;
 
 @Controller
 public class AuthenticationController {
+
+	@Autowired
+	private AlcolicoService alcolicoService;
 	
 	@Autowired
 	private CredentialsService credentialsService;
@@ -53,6 +62,11 @@ public class AuthenticationController {
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
             return "admin/home";
         }
+	     List<Alcolico> alcolici = this.alcolicoService.tutti();
+	     if(alcolici.size()>=3) {
+	     Collections.shuffle(alcolici);
+	     model.addAttribute("alcolici", alcolici.subList(0, 3));
+	     }
     	return "home";
     }
 	
