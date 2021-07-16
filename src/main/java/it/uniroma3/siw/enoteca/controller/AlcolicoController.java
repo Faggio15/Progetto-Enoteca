@@ -158,6 +158,8 @@ public class AlcolicoController {
 		alcoliciPref.add(this.alcolicoService.alcolicoPerId(id));
 		List<User> utenti = this.alcolicoService.alcolicoPerId(id).getUtenti();
 		utenti.add(user);
+		this.alcolicoService.inserisci(this.alcolicoService.alcolicoPerId(id));
+		this.userService.saveUser(user);
    		return "aggiuntaRiuscita.html";
    	}
     
@@ -176,5 +178,52 @@ public class AlcolicoController {
     	List<Alcolico> alcoliciCercati = this.alcolicoService.cercaPerNomeLike(cerca);
     	model.addAttribute("alcolici", alcoliciCercati);
     	return "alcolici.html";
+    }
+    
+    @RequestMapping(value = "/admin/modificaAlcolico/{id}", method = RequestMethod.GET)
+    public String modificaAlcolico(@PathVariable("id") Long id, Model model) {
+    	model.addAttribute("alcolico", this.alcolicoService.alcolicoPerId(id));
+    	this.alcolicoService.deleteAlcolicoById(id);
+    	model.addAttribute("tipologie", this.tipologiaService.tutti());
+    	model.addAttribute("caseProduttrici", this.casaProduttriceService.tutti());
+    	return "admin/modificaAlcolico.html"; 
+    }
+    
+    @RequestMapping(value = "/admin/modificaAlcolico", method = RequestMethod.POST)
+    public String modificaAlcolico(@ModelAttribute("alcolico") Alcolico alcolico,   @RequestParam("t") String tipologia,
+    		@RequestParam("cp") String casaProduttrice, @RequestParam("image") MultipartFile multipartFile, Model model, BindingResult bindingResult) throws IOException  {
+    	
+        
+    	this.alcolicoValidator.validate(alcolico, bindingResult);
+        if (!bindingResult.hasErrors()) {
+        	Alcolico nuovoAlcolico = alcolico;
+        	casaProduttrice.trim();
+            List<CasaProduttrice> casProd= this.casaProduttriceService.casaProduttricePerNome(casaProduttrice);
+            nuovoAlcolico.setCasaProduttrice(casProd.get(0));
+        	tipologia.trim(); 
+            List<Tipologia> tipol = this.tipologiaService.tipologiaPerNome(tipologia); 
+            nuovoAlcolico.setTipologia(tipol.get(0));
+        	
+            /*DELETE CARTELLA FOTO*/
+    		if(!(nuovoAlcolico.getPhotos()==null)) {
+    	   	String uploadDir ="src/main/resources/static/img/alcolici/"+ nuovoAlcolico.getId();
+    		Path uploadPath = Paths.get(uploadDir);
+    		FileUtils.deleteDirectory(uploadPath.toFile());;
+    		}
+            
+        	/*UPLOAD FOTO*/
+        	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        	nuovoAlcolico.setPhotos(fileName);
+            Alcolico savedAlcolico = this.alcolicoService.inserisci(nuovoAlcolico);
+            String uploadDir = "src/main/resources/static/img/alcolici/" + savedAlcolico.getId();
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            
+            model.addAttribute("alcolici", this.alcolicoService.tutti());
+            return "alcolici.html";
+        }
+        
+    	model.addAttribute("tipologie", this.tipologiaService.tutti());
+    	model.addAttribute("caseProduttrici", this.casaProduttriceService.tutti());
+        return "admin/modificaAlcolico.html";
     }
 }
