@@ -20,39 +20,42 @@ import it.uniroma3.siw.enoteca.model.Credentials;
 import it.uniroma3.siw.enoteca.model.User;
 import it.uniroma3.siw.enoteca.service.AlcolicoService;
 import it.uniroma3.siw.enoteca.service.CredentialsService;
-import net.bytebuddy.asm.Advice.This;
 
 @Controller
 public class AuthenticationController {
 
+
 	@Autowired
 	private AlcolicoService alcolicoService;
-	
+
 	@Autowired
 	private CredentialsService credentialsService;
-	
+
 	@Autowired
 	private UserValidator userValidator;
-	
+
 	@Autowired
 	private CredentialsValidator credentialsValidator;
-	
+
+
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET) 
 	public String showRegisterForm (Model model) {
 		model.addAttribute("user", new User());
 		model.addAttribute("credentials", new Credentials());
 		return "registerForm";
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET) 
 	public String showLoginForm (Model model) {
 		return "loginForm";
 	}
-	
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
 	public String logout(Model model) {
 		return "home";
 	}
+
 	
     @RequestMapping(value = "/default", method = RequestMethod.GET)
     public String defaultAfterLogin(Model model) {
@@ -91,4 +94,6 @@ public class AuthenticationController {
         }
         return "registerForm";
     }
+
+
 }

@@ -204,6 +204,7 @@ Header {
 	margin-top:20px;
 	width: 380px;
 	height: 200px;
+	margin-top: 20px;
 	transition-duration: 1s;
 	-ms-transition-duration: 1s;
 	-webkit-transition-duration: 1s;

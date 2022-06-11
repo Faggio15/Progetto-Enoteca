@@ -160,6 +160,9 @@ public class AlcolicoController {
 		utenti.add(user);
 		this.alcolicoService.inserisci(this.alcolicoService.alcolicoPerId(id));
 		this.userService.saveUser(user);
+
+		model.addAttribute("alcolici", alcoliciPref.size());
+
    		return "aggiuntaRiuscita.html";
    	}
     
